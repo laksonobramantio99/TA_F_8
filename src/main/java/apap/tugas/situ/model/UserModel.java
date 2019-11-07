@@ -17,7 +17,7 @@ public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
     @NotNull
@@ -36,9 +36,10 @@ public class UserModel implements Serializable {
     @JsonIgnore
     private RoleModel role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PengajuanSuratModel> listPengajuanSurat;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<LowonganModel> listLowongan;
 
     public String getId() {
@@ -71,5 +72,21 @@ public class UserModel implements Serializable {
 
     public void setRole(RoleModel role) {
         this.role = role;
+    }
+
+    public List<PengajuanSuratModel> getListPengajuanSurat() {
+        return listPengajuanSurat;
+    }
+
+    public void setListPengajuanSurat(List<PengajuanSuratModel> listPengajuanSurat) {
+        this.listPengajuanSurat = listPengajuanSurat;
+    }
+
+    public List<LowonganModel> getListLowongan() {
+        return listLowongan;
+    }
+
+    public void setListLowongan(List<LowonganModel> listLowongan) {
+        this.listLowongan = listLowongan;
     }
 }

@@ -1,10 +1,5 @@
 package apap.tugas.situ.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,41 +12,37 @@ public class RoleModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @NotNull
-    @Size(max = 50)
-    @Column(name = "role", nullable = false)
-    private String role;
+    @Size(max = 200)
+    @Column(name = "nama", nullable = false)
+    private String nama;
 
-    public List<UserModel> getUserRole() {
-        return userRole;
-    }
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserModel> listUser;
 
-    public void setUserRole(List<UserModel> userRole) {
-        this.userRole = userRole;
-    }
-
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private List<UserModel> userRole;
-
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getNama() {
+        return nama;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
+    public List<UserModel> getListUser() {
+        return listUser;
+    }
 
+    public void setListUser(List<UserModel> listUser) {
+        this.listUser = listUser;
+    }
 }

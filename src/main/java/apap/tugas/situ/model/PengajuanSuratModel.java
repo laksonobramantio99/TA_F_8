@@ -17,7 +17,7 @@ public class PengajuanSuratModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPengajuanSurat;
+    private Integer id;
 
     @NotNull
     @Size(max = 200)
@@ -26,11 +26,11 @@ public class PengajuanSuratModel implements Serializable {
 
     @NotNull
     @Column(name = "tanggal_pengajuan", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date tanggalPengajuan;
 
     @Column(name = "tanggal_disetujui", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date tanggalDisetujui;
 
     @NotNull
@@ -43,10 +43,78 @@ public class PengajuanSuratModel implements Serializable {
     private Integer status;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "jenisSuratId", referencedColumnName = "idJenisSurat", nullable = false)
+    @JoinColumn(name = "uuid_user", referencedColumnName = "uuid", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private UserModel user;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_jenis", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisSuratModel jenisSurat;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNomorSurat() {
+        return nomorSurat;
+    }
+
+    public void setNomorSurat(String nomorSurat) {
+        this.nomorSurat = nomorSurat;
+    }
+
+    public Date getTanggalPengajuan() {
+        return tanggalPengajuan;
+    }
+
+    public void setTanggalPengajuan(Date tanggalPengajuan) {
+        this.tanggalPengajuan = tanggalPengajuan;
+    }
+
+    public Date getTanggalDisetujui() {
+        return tanggalDisetujui;
+    }
+
+    public void setTanggalDisetujui(Date tanggalDisetujui) {
+        this.tanggalDisetujui = tanggalDisetujui;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+    public JenisSuratModel getJenisSurat() {
+        return jenisSurat;
+    }
+
+    public void setJenisSurat(JenisSuratModel jenisSurat) {
+        this.jenisSurat = jenisSurat;
+    }
 }
