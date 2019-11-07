@@ -1,5 +1,8 @@
 package apap.tugas.situ.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,6 +41,12 @@ public class PengajuanSuratModel implements Serializable {
     @NotNull
     @Column(name = "status", nullable = false)
     private Integer status;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "jenisSuratId", referencedColumnName = "idJenisSurat", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private JenisSuratModel jenisSurat;
 
 
 }
