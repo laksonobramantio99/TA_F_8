@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "pengajuan_surat")
+@Table(name = "pengajuanSurat")
 public class PengajuanSuratModel implements Serializable {
 
     @Id
@@ -21,15 +21,15 @@ public class PengajuanSuratModel implements Serializable {
 
     @NotNull
     @Size(max = 200)
-    @Column(name = "nomor_surat", nullable = false)
+    @Column(name = "nomorSurat", nullable = false)
     private String nomorSurat;
 
     @NotNull
-    @Column(name = "tanggal_pengajuan", nullable = false)
+    @Column(name = "tanggalPengajuan", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date tanggalPengajuan;
 
-    @Column(name = "tanggal_disetujui", nullable = false)
+    @Column(name = "tanggalDisetujui", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date tanggalDisetujui;
 
@@ -43,13 +43,13 @@ public class PengajuanSuratModel implements Serializable {
     private Integer status;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "uuid_user", referencedColumnName = "uuid", nullable = false)
+    @JoinColumn(name = "uuidUser", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserModel user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_jenis", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idJenis", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisSuratModel jenisSurat;

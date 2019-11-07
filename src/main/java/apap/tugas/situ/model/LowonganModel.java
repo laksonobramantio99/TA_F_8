@@ -26,12 +26,12 @@ public class LowonganModel implements Serializable {
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "tanggal_dibuka" , nullable = false)
+    @Column(name = "tanggalDibuka" , nullable = false)
     private Date tanggalDibuka;
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "tanggal_ditutup" , nullable = false)
+    @Column(name = "tanggalDitutup" , nullable = false)
     private Date tanggalDitutup;
 
     @NotNull
@@ -44,13 +44,13 @@ public class LowonganModel implements Serializable {
     private Integer jumlah;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "uuid_user", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "uuidUser", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private UserModel user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "id_jenis_lowongan", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "idJenisLowongan", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisLowonganModel jenisLowongan;

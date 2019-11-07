@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "jenis_surat")
+@Table(name = "jenisSurat")
 public class JenisSuratModel implements Serializable {
 
     @Id
@@ -24,7 +24,7 @@ public class JenisSuratModel implements Serializable {
     @Column(name = "keterangan", nullable = false)
     private String keterangan;
 
-    @OneToMany(mappedBy = "jenis_surat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jenisSurat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PengajuanSuratModel> listPengajuanSurat;
 
     public Integer getId() {
