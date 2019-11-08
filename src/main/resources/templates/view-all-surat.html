@@ -1,39 +1,85 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
-<head>
-    <title> List Pengajuan Surat </title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+        <!--./ css -->
+    </head>
 </head>
 
 <body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
 
-<h2 align="center" style="margin: 20px; color: black"> Daftar Pengajuan Surat</h2>
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
 
-<container>
-    <div class="card">
-        <table class="table" style="margin-top: 20px">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Kode</th>
-                        <th scope="col">Tanggal Pengajuan</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each = "surat, iterationStatus: ${pengajuanSuratList}">
-                        <th scope="row" th:text="${iterationStatus.count}"></th>
-                        <td th:text ="${surat.nomorSurat}">  </td>
-                        <td th:text="${surat.tanggalPengajuan}"></td>
-                        <td th:text="${surat.stringStatus}"></td>
-                    </tr>
-                    </tbody>
-        </table>
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <h2 align="center" style="margin: 20px; color: black"> Daftar Pengajuan Surat</h2>
+
+                    <container>
+                        <div class="card">
+                            <table class="table" style="margin-top: 20px">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Kode</th>
+                                    <th scope="col">Tanggal Pengajuan</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each = "surat, iterationStatus: ${pengajuanSuratList}">
+                                    <th scope="row" th:text="${iterationStatus.count}"></th>
+                                    <td th:text ="${surat.nomorSurat}">  </td>
+                                    <td th:text="${surat.tanggalPengajuan}"></td>
+                                    <td th:text="${surat.stringStatus}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                <!-- End of Page Contain -->
+
+
+            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- Emd of Content Wrapper -->
 
     </div>
-</container>
+</div>
+<!-- END OF TEMPLATE -->
 
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
 </body>
 </html>
