@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head>
+    <title> List Pengajuan Surat </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+
+</head>
+
+<body>
+
+<h2 align="center" style="margin: 20px; color: black"> Daftar Pengajuan Surat</h2>
+
+<container>
+    <div class="card">
+        <table class="table" style="margin-top: 20px">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Kode</th>
+                        <th scope="col">Tanggal Pengajuan</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "surat, iterationStatus: ${pengajuanSuratList}">
+                        <th scope="row" th:text="${iterationStatus.count}"></th>
+                        <td th:text ="${surat.nomorSurat}">  </td>
+                        <td th:text="${surat.tanggalPengajuan}"></td>
+                        <td th:text="${surat.stringStatus}"></td>
+                    </tr>
+                    </tbody>
+        </table>
+
+    </div>
+</container>
+
+</body>
+</html>
