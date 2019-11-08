@@ -19,6 +19,14 @@ public class RoleModel implements Serializable {
     @Column(name = "nama", nullable = false)
     private String nama;
 
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UserModel> listUser;
 
@@ -28,14 +36,6 @@ public class RoleModel implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
     }
 
     public List<UserModel> getListUser() {
