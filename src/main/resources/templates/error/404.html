@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> ERROR 404 </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar" th:remove="tag"></nav>
+
+<div class="container" style="width: 30vw; margin-top: 30px">
+    <div class="card text-dark mb-3 text-center">
+        <div class="card-header bg-warning">
+            <h3>ERROR CODE</h3>
+        </div>
+        <div class="card-body bg-dark">
+            <h1 class="card-title text-light" style="font-size: 10vw; margin-top: -50px">404</h1>
+            <h2 class="text-warning" style="margin-top: -30px">URL Not Found</h2>
+            <div class="card-footer bg-light" style="border-radius: 30px">
+                <p class="card-text text-secondary">The HTTP 404, 404 Not Found, 404, Page Not Found, or Server Not
+                    Found error message is a Hypertext Transfer Protocol (HTTP) standard response code, in computer
+                    network communications, to indicate that the browser was able to communicate with a given server,
+                    but the server could not find what was requested.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+
+<head>
+    <title> ERROR 500 </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar" th:remove="tag"></nav>
+
+<div class="container" style="width: 30vw; margin-top: 30px">
+    <div class="card text-dark mb-3 text-center">
+        <div class="card-header bg-warning">
+            <h3>ERROR CODE</h3>
+        </div>
+        <div class="card-body bg-dark">
+            <h1 class="card-title text-light" style="font-size: 10vw; margin-top: -50px">500</h1>
+            <h2 class="text-warning" style="margin-top: -30px">Internal Server Error</h2>
+            <div class="card-footer bg-light" style="border-radius: 30px">
+                <p class="card-text text-secondary">The 500 Internal Server Error is a very general HTTP status code
+                    that means something has gone wrong on the web site's server but the server could not be more
+                    specific on what the exact problem is</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html> -->
