@@ -1,44 +1,89 @@
+
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title> SITU </title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+        <!--./ css -->
+    </head>
 </head>
 
 <body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
 
-<div style="display: flex; margin-right: 2vw; justify-content: flex-end; align-items: flex-end">
-    <a th:href="@{/logout}">Logout</a>
-</div>
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
 
-<nav th:replace="fragments/fragment :: navbar"></nav>
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Tambah User Baru</div>
-                <div class="card-body">
-                    <form th:action="@{/user/addUser}" method="POST">
-                        <label>User Name</label>
-                        <input type="text" name="username" class="form-control" />
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
 
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" />
 
-                        <label>Role</label>
-                        <select name="role" class="form-control">
-                            <option selected value="">-- Pilih role --</option>
-                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
-                        </select>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">Tambah User Baru</div>
+                                <div class="card-body">
+                                    <form th:action="@{/user/addUser}" method="POST">
+                                        <label>User Name</label>
+                                        <input type="text" name="username" class="form-control" />
 
-                        <br>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                                        <label>Password</label>
+                                        <input type="password" name="password" class="form-control" />
+
+                                        <label>Role</label>
+                                        <select name="role" class="form-control">
+                                            <option selected value="">-- Pilih role --</option>
+                                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
+                                        </select>
+
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- End of Page Contain -->
+
+
             </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
         </div>
+        <!-- Emd of Content Wrapper -->
+
     </div>
+</div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
 </body>
 </html>
