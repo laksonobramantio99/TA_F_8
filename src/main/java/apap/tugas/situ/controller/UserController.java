@@ -32,6 +32,8 @@ public class UserController {
         return "home";
     }
 
-
-
+    @RequestMapping(value = "/tambah", method = RequestMethod.GET)
+    private String addUserForm(Model model) {
+        return "form-add-user";
+    }
 }
