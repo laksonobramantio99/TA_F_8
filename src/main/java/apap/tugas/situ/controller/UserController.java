@@ -33,7 +33,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/tambah", method = RequestMethod.GET)
-    private String addUserForm(Model model) {
+    public String addUserForm(Model model) {
+        UserModel user = new UserModel();
+        model.addAttribute("user", user);
         return "form-add-user";
     }
 }
