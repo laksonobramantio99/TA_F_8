@@ -5,6 +5,8 @@ import apap.tugas.situ.repository.JenisLowonganDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JenisLowonganServiceImpl implements JenisLowonganService {
 
@@ -16,5 +18,10 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
     public void addJenisLowongan(JenisLowonganModel jenisLowongan) {
         jenisLowonganDB.save(jenisLowongan);
 
+    }
+
+    @Override
+    public List<JenisLowonganModel> getAllJenisLowongan() {
+        return jenisLowonganDB.findAll();
     }
 }

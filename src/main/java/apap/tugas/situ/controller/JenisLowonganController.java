@@ -13,12 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class JenisLowonganController {
 
     @Autowired
     JenisLowonganService jenisLowonganService;
+
+    @RequestMapping(value = "/jenisLowongan", method = RequestMethod.GET)
+    private String viewAll(Model model) {
+        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
+        model.addAttribute("listJenisLowongan", listJenisLowongan);
+
+        return "view-all-jenis-lowongan";
+    }
 
     @RequestMapping(value = "/jenisLowongan/add", method = RequestMethod.GET)
     private String addJenisLowonganForm(Model model) {
@@ -33,7 +42,11 @@ public class JenisLowonganController {
         jenisLowongan.setListLowongan(listLowongan);
         jenisLowonganService.addJenisLowongan(jenisLowongan);
         model.addAttribute("jenisLowongan", jenisLowongan);
-        return "form_jenis_lowongan";
+
+        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
+        model.addAttribute("listJenisLowongan", listJenisLowongan);
+
+        return "view-all-jenis-lowongan";
     }
 
 }
