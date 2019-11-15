@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Jenis Lowongan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("form").submit(function(){
+                alert("Submitted");
+            });
+        });
+    </script>
+</head>
+
+<style>
+    .add-pasien{
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .formContainer{
+        display: flex;
+        flex-direction: row;
+        width: 50rem;
+        justify-content: center;
+    }
+
+
+    .leftContainer{
+        display: flex;
+        flex-direction: column;
+        padding-right: 5rem;
+        width: 30rem;
+    }
+
+    .form-control{
+        width: 100%;
+    }
+
+    .btn {
+        display: flex;
+        align-self: flex-end;
+        justify-items: flex-start;
+    }
+
+
+</style>
+<body>
+
+
+<div class="container-fluid add-pasien">
+
+
+    <form  th:action="@{/jenisLowongan/add}" th:object="${jenisLowongan}" method="POST">
+
+        <div class="formContainer">
+            <div class="leftContainer">
+                <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis Lowongan</h3>
+                <label class="control-label">Nama:</label>
+                <input class="form-control"  type="text" th:field="*{nama}">
+                <br>
+
+                <label class="control-label">keterangan:</label>
+                <input class="form-control" type="text" th:field="*{keterangan}">
+                <br>
+
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </div>
+
+
+
+        </div>
+    </form>
+</div>
+
+</body>
+<script>
+
+</script>
+</html>
