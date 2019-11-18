@@ -51,7 +51,11 @@
                                     <th scope="row" th:text="${iterationStatus.count}"></th>
                                     <td th:text ="${surat.nomorSurat}">  </td>
                                     <td th:text="${surat.tanggalPengajuan}"></td>
-                                    <td th:text="${surat.stringStatus}"></td>
+                                    <td th:if="${surat.status} == 0" th:text="Menunggu Persetujuan"></td>
+                                    <td th:if="${surat.status} == 1" th:text="Ditolak"></td>
+                                    <td th:if="${surat.status} == 2" th:text="Disetujui"></td>
+                                    <td th:if="${surat.status} == 3" th:text="Diproses"></td>
+                                    <td th:if="${surat.status} == 4" th:text="Selesai"></td>
                                 </tr>
                                 </tbody>
                             </table>
