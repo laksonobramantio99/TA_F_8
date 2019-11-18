@@ -5,13 +5,13 @@
     <title>Add Jenis Lowongan</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("form").submit(function(){
-                alert("Submitted");
-            });
-        });
-    </script>
+<!--    <script>-->
+<!--        $(document).ready(function(){-->
+<!--            $("form").submit(function(){-->
+<!--                alert("Submitted");-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 </head>
 
 <style>
@@ -59,6 +59,9 @@
         <div class="formContainer">
             <div class="leftContainer">
                 <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis Lowongan</h3>
+                <div class="alert alert-primary" role="alert"  th:if="${alert == 'EXIST'}">
+                    Nama Sudah Ada!
+                </div>
                 <label class="control-label">Nama:</label>
                 <input class="form-control"  type="text" th:field="*{nama}">
                 <br>

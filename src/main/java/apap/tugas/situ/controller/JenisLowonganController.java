@@ -38,15 +38,23 @@ public class JenisLowonganController {
 
     @RequestMapping(value = "/jenisLowongan/add", method = RequestMethod.POST)
     private String addJenisLowonganSubmit(@ModelAttribute JenisLowonganModel jenisLowongan, Model model) {
-        ArrayList<LowonganModel> listLowongan = new ArrayList<>();
-        jenisLowongan.setListLowongan(listLowongan);
-        jenisLowonganService.addJenisLowongan(jenisLowongan);
-        model.addAttribute("jenisLowongan", jenisLowongan);
+        JenisLowonganModel existing = jenisLowonganService.findByNama(jenisLowongan.getNama());
+        if (existing != null) {
+            JenisLowonganModel newJenisLowongan = new JenisLowonganModel();
+            model.addAttribute("jenisLowongan", newJenisLowongan);
+            model.addAttribute("alert", "EXIST");
+            return "form_jenis_lowongan";
+        }else {
+            ArrayList<LowonganModel> listLowongan = new ArrayList<>();
+            jenisLowongan.setListLowongan(listLowongan);
+            jenisLowonganService.addJenisLowongan(jenisLowongan);
+            model.addAttribute("jenisLowongan", jenisLowongan);
 
-        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
-        model.addAttribute("listJenisLowongan", listJenisLowongan);
+            List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
+            model.addAttribute("listJenisLowongan", listJenisLowongan);
 
-        return "view-all-jenis-lowongan";
+            return "view-all-jenis-lowongan";
+        }
     }
 
 }

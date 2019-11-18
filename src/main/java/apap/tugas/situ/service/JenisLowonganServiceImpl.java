@@ -24,4 +24,9 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
     public List<JenisLowonganModel> getAllJenisLowongan() {
         return jenisLowonganDB.findAll();
     }
+
+    @Override
+    public JenisLowonganModel findByNama(String nama) {
+        return jenisLowonganDB.findByNama(nama);
+    }
 }

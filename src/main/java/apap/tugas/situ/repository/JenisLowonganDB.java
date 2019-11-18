@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JenisLowonganDB extends JpaRepository<JenisLowonganModel, Integer> {
-
+    JenisLowonganModel findByNama(String nama);
 }
