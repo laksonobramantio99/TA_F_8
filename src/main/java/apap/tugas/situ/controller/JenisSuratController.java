@@ -118,7 +118,6 @@ public class JenisSuratController {
         redirAttrs.addFlashAttribute("namaJenisSuratTarget", namaJenisSuratTarget);
         redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
         return new ModelAndView("redirect:/jenis-surat", model);
-
     }
 }
 
