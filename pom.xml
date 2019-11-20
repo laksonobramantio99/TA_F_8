@@ -69,7 +69,20 @@
 			<artifactId>json</artifactId>
 			<version>20180130</version>
 		</dependency>
+
+		<!-- SECURITY -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+		</dependency>
+		<!-- /SECURITY -->
+    
 	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -4,40 +4,60 @@
 <head>
     <title>Home</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+
+    <style>
+        #Wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25vh;
+        }
+    </style>
+
 </head>
 
-<body>
-    <div class="container-fluid">
-        <h2>Hello !</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        Log In
+<body class="bg-gradient-primary">
+<div class="container" id="Wrapper">
+    <div class="row">
+        <div class="text-center">
+            <h3 class="text-light mb-xl-3">SITU<sup>.NG</h3>
+
+            <div class="card">
+                <div class="card-header">
+                    Login
+                </div>
+                <div class="card-body pl-5 pr-5 pt-3 pb-2">
+                <div th:if="${param.error}">
+                    <span style="color: red">Invalid username or password</span>
+                </div>
+                <form th:action="@{/login}" method="POST">
+                    <div class="form-group text-center">
+                        <!--                                <label class="">Username:</label>-->
+                        <input class="form-control form-control-user" id="exampleInputEmail"
+                               aria-describedby="emailHelp" placeholder="Username"
+                               name="username"/>
                     </div>
-                    <div class="card-body">
-                        <div th:if="${param.error}">
-                            <span style="color: red">Invalid username or password</span>
-                        </div>
-                        <form th:action="@{/login}" method="POST">
-                            <div class="row form-group">
-                                <label class="col-sm-4">Username:</label>
-                                <input type="text" class="col-sm-8 form-control input-sm" name="username">
-                            </div>
-                            <div class="row form-group">
-                                <label class="col-sm-4">Password:</label>
-                                <input type="password" class="col-sm-8 form-control input-sm" name="password">
-                            </div>
-                            <div class="row form-group">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
-                            </div>
-                        </form>
+                    <div class="form-group text-center">
+                        <!--                                <label class="">Password:</label>-->
+                        <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                               placeholder="Password" name="password">
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                </form>
+            </div>
+            <footer class="sticky-footer bg-white pt-0 pb-2">
+                <div class="container my-auto">
+                    <div class="copyright text-center">
+                        <span>2019 Copyright  &copy; <strong> Sistem Informasi Tata Usaha New Generation </strong> | APAP | Fasilkom UI</span>
                     </div>
                 </div>
-            </div>
+            </footer>
         </div>
     </div>
+</div>
+</div>
 </body>
 
 </html>

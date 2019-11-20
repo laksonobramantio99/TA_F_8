@@ -49,15 +49,11 @@
                                 <tr>
                                     <td>Jumlah</td>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-sm-1">
-                                                <h6 th:text="${lowongan.jumlah}" class="m-0 p-0"></h6>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <a class="align-content-center" th:href="@{'/lowongan/ubahLowongan/' + ${lowongan.id}}">
-                                                    <button type="button" class="btn btn-sm btn-primary m-0">Ubah jumlah lowongan</button>
-                                                </a>
-                                            </div>
+                                        <div>
+                                            <p th:text="${lowongan.jumlah}"></p>
+                                            <a class="align-content-center" th:href="@{'/lowongan/ubahLowongan/' + ${lowongan.id}}">
+                                                <button type="button" class="btn btn-sm btn-primary m-0">Ubah jumlah lowongan</button>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
