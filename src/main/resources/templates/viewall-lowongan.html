@@ -1,68 +1,106 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Daftar Lowongan</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+        <!--./ css -->
+    </head>
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="card mt-3 mb-4">
-        <div class="card-header bg-dark text-white">Daftar Lowongan</div>
-        <div class="card-body">
-            <div class="container my-2">
-                <div class="card mb-2 container-fluid" th:each="lowongan : ${listLowongan}">
-                    <h2 th:text="${lowongan.judul}" class="mt-3"></h2>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tbody>
-                            <tr>
-                                <td>Jenis Lowongan</td>
-                                <td th:text="${lowongan.jenisLowongan.nama}"></td>
-                            </tr>
-                            <tr>
-                                <td>Jumlah</td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <h6 th:text="${lowongan.jumlah}" class="m-0 p-0"></h6>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <a th:href="@{'/lowongan/ubahLowongan/' + ${lowongan.id}}">
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <h2>Daftar Lowongan</h2>
+                    <a>
+                        <button type="button" class="btn btn-success ml-0 mb-3">Tambah Lowongan</button>
+                    </a>
+                    <div class="card mb-3 container-fluid" th:each="lowongan : ${listLowongan}">
+                        <h3 th:text="${lowongan.judul}" class="mt-3"></h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>Jenis Lowongan</td>
+                                    <td th:text="${lowongan.jenisLowongan.nama}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Jumlah</td>
+                                    <td>
+                                        <div>
+                                            <p th:text="${lowongan.jumlah}"></p>
+                                            <a class="align-content-center" th:href="@{'/lowongan/ubahLowongan/' + ${lowongan.id}}">
                                                 <button type="button" class="btn btn-sm btn-primary m-0">Ubah jumlah lowongan</button>
                                             </a>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Keterangan</td>
-                                <td th:text="${lowongan.keterangan}"></td>
-                            </tr>
-                            <tr>
-                                <td>Tanggal Dibuka</td>
-                                <td th:text="${lowongan.tanggalDibuka}"></td>
-                            </tr>
-                            <tr>
-                                <td>Tanggal Ditutup</td>
-                                <td th:text="${lowongan.tanggalDitutup}"></td>
-                            </tr>
-                            <tr>
-                                <td>Publisher</td>
-                                <td th:text="${lowongan.user.username}"></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Keterangan</td>
+                                    <td th:text="${lowongan.keterangan}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Dibuka</td>
+                                    <td th:text="${lowongan.tanggalDibuka}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Ditutup</td>
+                                    <td th:text="${lowongan.tanggalDitutup}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Publisher</td>
+                                    <td th:text="${lowongan.user.username}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
+                <!-- End of Page Contain -->
+
+
             </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
 
         </div>
-    </div>
+        <!-- Emd of Content Wrapper -->
 
+    </div>
 </div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
 </body>
 </html>
