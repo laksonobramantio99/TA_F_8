@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+        <!--./ css -->
+    </head>
+</head>
+
+<body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <div class="container">
+                        <div class="card mt-3 mb-3">
+                            <div class="card-header bg-dark text-white"></div>
+                            <div class="card-body">
+                                <div class="container my-2">
+                                    <h2 class="mt-3"> Berhasil diubah! </h2>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <td>Nomor Surat : </td>
+                                                <td th:text="${surat.nomorSurat}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tanggal Pengajuan : </td>
+                                                <td th:text="${surat.tanggalPengajuan}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Keterangan :</td>
+                                                <td th:text="${surat.keterangan}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status : </td>
+                                                <td th:if="${surat.status} == 0" th:text="Menunggu Persetujuan"></td>
+                                                <td th:if="${surat.status} == 1" th:text="Ditolak"></td>
+                                                <td th:if="${surat.status} == 2" th:text="Disetujui"></td>
+                                                <td th:if="${surat.status} == 3" th:text="Diproses"></td>
+                                                <td th:if="${surat.status} == 4" th:text="Selesai"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                <!-- End of Page Contain -->
+
+
+            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- Emd of Content Wrapper -->
+
+    </div>
+</div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
+</body>
+</html>
