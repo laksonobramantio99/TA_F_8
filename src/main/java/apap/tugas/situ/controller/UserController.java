@@ -71,7 +71,7 @@ public class UserController {
         // POST to SI-Sivitas
         JSONObject requestBody = new JSONObject();
         requestBody.put("idUser", addedUser.getUuid());
-        requestBody.put("nip", "P07051999AB123" + addedUser.getUuid());
+        requestBody.put("nip", "");
         requestBody.put("nama", nama);
         requestBody.put("tempatLahir", tempatLahir);
         requestBody.put("tanggalLahir", tanggalLahir);
@@ -79,7 +79,6 @@ public class UserController {
         requestBody.put("telepon", noTelepon);
 
         model.addAttribute("user", addedUser);
-        model.addAttribute("userDetail", requestBody);
 
         userRestService.postAddUser(requestBody);
         return "add-user";
