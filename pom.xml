@@ -75,7 +75,6 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 		</dependency>
 		<!-- /SECURITY -->
-
 	</dependencies>
 
 
