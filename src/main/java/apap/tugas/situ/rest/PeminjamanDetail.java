@@ -10,8 +10,8 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PeminjamanDetail {
 
-    @JsonProperty("tanggal-pengajuan")
-    private Date tanggalPengajuan;
+    @JsonProperty("uuid")
+    private String uuid;
 
     @JsonProperty("jumlah- pinjaman")
     private Integer jumlahPinjaman;
