@@ -4,6 +4,7 @@ package apap.tugas.situ.service;
 import apap.tugas.situ.model.PengajuanSuratModel;
 import apap.tugas.situ.repository.PengajuanSuratDB;
 import apap.tugas.situ.rest.Setting;
+import apap.tugas.situ.rest.SuratDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -39,10 +40,8 @@ public class SuratRestServiceImpl implements SuratRestService{
         }
     }
 
-//    @Override
-//    public Mono<PengajuanSuratModel> postSurat() {
-//        PengajuanSuratModel model = pengajuanSurat;
-//        MultiValueMap<String,String> data = new LinkedMultiValueMap<>()
-//        return null;
-//    }
+    @Override
+    public void createSurat(PengajuanSuratModel surat) {
+         pengajuanSuratDB.save(surat);
+    }
 }
