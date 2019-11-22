@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <div th:include="fragments/fragment :: css" th:remove="tag"></div>
+        <!--./ css -->
+    </head>
+</head>
+
+<body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="detail mx-auto">
+                        <div style="padding-bottom: 1rem">
+                            <button class="btn btn-primary">
+                                <a th:href="@{/jenisLowongan/add}" style="color: white">Tambah Jenis Lowongan</a>
+                            </button>
+                        </div>
+
+
+                        <table class="table">
+
+                            <thead class="thead-dark">
+                            <tr>
+                                <th colspan="4">Daftar Jenis Lowongan</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            <tbody>
+
+                            <tr th:each="jenisLowongan, iterationStatus: ${listJenisLowongan}">
+                                <!--            <form th:action="@{/diagnosis-penyakit/hapus/} + ${diagnosisPenyakit.id}" method="POST">-->
+                                <td th:text="${iterationStatus.count}"></td>
+                                <td th:text="${jenisLowongan.nama}"></td>
+                                <td th:text="${jenisLowongan.keterangan}"></td>
+                                <td>
+                                    <button class="btn btn-primary">
+                                        <a style="color: white">
+                                            Lihat
+                                        </a>
+                                    </button>
+
+                                    <button class="btn btn-danger">
+                                        Hapus
+                                    </button>
+                                    <!--            </form>-->
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <!-- End of Page Contain -->
+
+
+            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- Emd of Content Wrapper -->
+
+    </div>
+</div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
+</body>
+</html>
