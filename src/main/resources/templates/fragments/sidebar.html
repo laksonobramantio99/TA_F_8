@@ -7,10 +7,10 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-school"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SITU<sup>.NG</sup></div>
+        <div class="sidebar-brand-text mx-1" style="font-size: 20px">SITU<sup>.NG</sup></div>
     </a>
 
     <!-- Divider -->
@@ -28,7 +28,8 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Lowongan
+        <i class="fas fa-search-plus"></i>
+        <span>Lowongan</span>
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -36,16 +37,22 @@
         <a class="nav-link"
            aria-controls="collapseTwo"
            th:href="@{/lowongan}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Daftar Lowongan</span>
+            <span>Daftar Semua Lowongan</span>
+        </a>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link"
+           aria-controls="collapseTwo"
+           th:href="@{/jenisLowongan}">
+            <span>Daftar Jenis Lowongan</span>
         </a>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item active">
         <a class="nav-link"
-           th:href="@{/lowongan}">
-            <i class="fas fa-fw fa-folder"></i>
+           th:href="@{/lowongan/tambah}">
             <span>Tambah Lowongan</span>
         </a>
     </li>
@@ -55,24 +62,49 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Surat
+        <i class="fas fa-envelope"></i>
+        <span>Surat</span>
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item active">
         <a class="nav-link"
+           th:href="@{/surat}">
+            <span>Lihat Semua Surat</span>
+        </a>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link"
            th:href="@{/jenis-surat}">
-            <i class="fas fa-fw fa-folder"></i>
             <span>Lihat Jenis Surat</span>
         </a>
     </li>
+
     <!-- Tambah Surat -->
     <li class="nav-item active">
         <a class="nav-link"
            th:href="@{/jenis-surat/tambah}">
-            <i class="fas fa-fw fa-folder"></i>
             <span>Tambah Jenis Surat</span>
         </a>
     </li>
+
+    <!-- Divider: SI KOPERASI -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        <i class="fas fa-coins"></i>
+        <span>SI Koperasi</span>
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item active">
+        <a class="nav-link"
+           th:href="@{/formulir-peminjaman}">
+            <span>Pengajuan Peminjaman</span>
+        </a>
+    </li>
+
 </ul>
 

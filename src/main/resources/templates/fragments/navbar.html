@@ -13,34 +13,28 @@
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <!-- Nav Item - User Information -->
-        <li class="nav-item text-dark">
-            <a class="nav-link text-dark" aria-expanded="false">
-                <div sec:authorize="isAuthenticated()">
-                    <div class="font-weight-bold">
-                    <span class="mr-2 d-none d-lg-inline text-uppercase"
-                          th:text="${#httpServletRequest.remoteUser} + ' - '"></span>
-                        <span class="mr-2 d-none d-lg-inline" sec:authentication="principal.authorities"></span>
-
-                        <span class="glyphicon glyphicon-user"></span>
-                        <img class="img-profile rounded-circle"
-                             src="https://img.icons8.com/clouds/100/000000/head-profile.png">
-                    </div>
-                </div>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dark text-capitalize font-weight-bold" th:text="${#httpServletRequest.remoteUser} + ' - '"></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600" sec:authentication="principal.authorities"></span>
+                <span class="font-weight-bold text-dark"><i class="fas fa-user-tie"></i></span>
+                <!--                <img class="img-profile rounded-circle"-->
+<!--                     src="https://img.icons8.com/clouds/100/000000/head-profile.png">-->
+                <i class="fas fa-chevron-circle-down small"></i>
             </a>
             <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" th:href="@{/user/profile}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
+            </div>
         </li>
-
-        <div class="topbar-divider d-none d-sm-block"></div>
-
-        <li>
-            <button type="button" class="btn btn-light" style="height: 50px">
-                <a class="nav-link text-capitalize" th:href="@{/logout}">
-                    <span><i class="fas fa-sign-out-alt"></i> </span>
-                        Log out</a>
-
-            </button>
-        </li>
-
     </ul>
 
 
@@ -48,3 +42,4 @@
 <!-- End of Topbar -->
 
 </html>
+
