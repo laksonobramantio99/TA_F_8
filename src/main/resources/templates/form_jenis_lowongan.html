@@ -1,86 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeLeaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Add Jenis Lowongan</title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!--    <script>-->
-<!--        $(document).ready(function(){-->
-<!--            $("form").submit(function(){-->
-<!--                alert("Submitted");-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <div th:include="fragments/fragment :: css" th:remove="tag"></div>
+        <!--./ css -->
+    </head>
 </head>
 
-<style>
-    .add-pasien{
-        display: flex;
-        justify-content: center;
-
-    }
-
-    .formContainer{
-        display: flex;
-        flex-direction: row;
-        width: 50rem;
-        justify-content: center;
-    }
-
-
-    .leftContainer{
-        display: flex;
-        flex-direction: column;
-        padding-right: 5rem;
-        width: 30rem;
-    }
-
-    .form-control{
-        width: 100%;
-    }
-
-    .btn {
-        display: flex;
-        align-self: flex-end;
-        justify-items: flex-start;
-    }
-
-
-</style>
 <body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
 
 
-<div class="container-fluid add-pasien">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="container-fluid add-pasien" style="width:50%">
 
 
-    <form  th:action="@{/jenisLowongan/add}" th:object="${jenisLowongan}" method="POST">
+                        <form  th:action="@{/jenisLowongan/add}" th:object="${jenisLowongan}" method="POST">
 
-        <div class="formContainer">
-            <div class="leftContainer">
-                <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis Lowongan</h3>
-                <div class="alert alert-primary" role="alert"  th:if="${alert == 'EXIST'}">
-                    Nama Sudah Ada!
+                            <div class="formContainer">
+                                <div class="leftContainer">
+                                    <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis Lowongan</h3>
+                                    <div class="alert alert-primary" role="alert"  th:if="${alert == 'EXIST'}">
+                                        Nama Sudah Ada!
+                                    </div>
+                                    <label class="control-label">Nama:</label>
+                                    <input class="form-control"  type="text" th:field="*{nama}">
+                                    <br>
+
+                                    <label class="control-label">keterangan:</label>
+                                    <input class="form-control" type="text" th:field="*{keterangan}">
+                                    <br>
+
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </div>
+
+
+
+                            </div>
+                        </form>
+                    </div>
+
+
                 </div>
-                <label class="control-label">Nama:</label>
-                <input class="form-control"  type="text" th:field="*{nama}">
-                <br>
+                <!-- End of Page Contain -->
 
-                <label class="control-label">keterangan:</label>
-                <input class="form-control" type="text" th:field="*{keterangan}">
-                <br>
 
-                <button type="submit" class="btn btn-primary">Tambah</button>
             </div>
+            <!-- End of Main Content -->
 
 
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
 
         </div>
-    </form>
+        <!-- Emd of Content Wrapper -->
+
+    </div>
 </div>
+<!-- END OF TEMPLATE -->
 
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
 </body>
-<script>
-
-</script>
 </html>
