@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface SuratRestService {
     PengajuanSuratModel getSuratbyNomor(String nomor);
-//    Mono<PengajuanSuratModel> postSurat();
+    void createSurat(PengajuanSuratModel surat);
 }

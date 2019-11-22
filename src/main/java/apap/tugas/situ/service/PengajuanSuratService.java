@@ -10,4 +10,5 @@ public interface PengajuanSuratService {
     Optional<PengajuanSuratModel> getSuratbyId(Integer id);
     void generateCode(PengajuanSuratModel surat);
     PengajuanSuratModel ubahSurat(PengajuanSuratModel surat);
+
 }
