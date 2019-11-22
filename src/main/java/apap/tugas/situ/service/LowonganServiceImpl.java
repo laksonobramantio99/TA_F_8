@@ -18,10 +18,12 @@ public class LowonganServiceImpl implements  LowonganService {
         return lowonganDb.findAll();
     }
 
+    @Override
     public Optional<LowonganModel> getById(Integer id) {
         return lowonganDb.findById(id);
     }
 
+    @Override
     public LowonganModel ubahLowongan(LowonganModel lowongan) {
         LowonganModel targetLowongan = lowonganDb.findById(lowongan.getId()).get();
 
@@ -32,5 +34,10 @@ public class LowonganServiceImpl implements  LowonganService {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public LowonganModel tambahLowongan(LowonganModel lowongan) {
+        return lowonganDb.save(lowongan);
     }
 }

@@ -1,8 +1,13 @@
 package apap.tugas.situ.controller;
 
+import apap.tugas.situ.model.JenisLowonganModel;
 import apap.tugas.situ.model.LowonganModel;
+import apap.tugas.situ.model.UserModel;
+import apap.tugas.situ.service.JenisLowonganService;
 import apap.tugas.situ.service.LowonganService;
+import apap.tugas.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +22,12 @@ import java.util.List;
 public class LowonganController {
     @Autowired
     private LowonganService lowonganService;
+
+    @Autowired
+    private JenisLowonganService jenisLowonganService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/lowongan", method = RequestMethod.GET)
     public String viewAllLowongan(Model model) {
@@ -54,4 +65,25 @@ public class LowonganController {
 
         return "ubah-jumlah-lowongan";
     }
+
+    @RequestMapping(value = "/lowongan/tambah", method = RequestMethod.GET)
+    public String tambahLowonganForm(Model model) {
+        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAll();
+        LowonganModel lowongan = new LowonganModel();
+
+        model.addAttribute("listJenisLowongan", listJenisLowongan);
+        model.addAttribute("lowongan", lowongan);
+        return "form-tambah-lowongan";
+    }
+
+    @RequestMapping(value = "/lowongan/tambah", method = RequestMethod.POST)
+    public String tambahLowonganSubmit(@ModelAttribute LowonganModel lowongan, Model model) {
+        UserModel userModel = userService.findUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+        lowongan.setUser(userModel);
+        lowonganService.tambahLowongan(lowongan);
+
+        model.addAttribute("lowongan", lowongan);
+        return "tambah-lowongan";
+    }
+
 }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <head>
+        <title>Tambah Lowongan</title>
+        <!-- css -->
+        <div th:include="fragments/fragment :: css" th:remove="tag"></div>
+        <!--./ css -->
+    </head>
+</head>
+
+<body>
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <div class="container">
+                        <div class="card container-fluid p-5">
+                            <h3>Tambah Lowongan</h3>
+                            <form method="post" th:action="@{/lowongan/tambah}" th:object="${lowongan}">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Jenis Lowongan</label>
+                                    <div class="col-sm">
+                                        <select class="form-control" name="jenisLowongan">
+                                            <option th:each="jenisLowongan : ${listJenisLowongan}" th:text="${jenisLowongan.nama}" th:value="${jenisLowongan.id}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Judul</label>
+                                    <div class="col-sm">
+                                        <input type="text" class="form-control" name="judul">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Tanggal Dibuka</label>
+                                    <div class="col-sm">
+                                        <input type="date" class="form-control" name="tanggalDibuka">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Tanggal Ditutup</label>
+                                    <div class="col-sm">
+                                        <input type="date" class="form-control" name="tanggalDitutup">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Keterangan</label>
+                                    <div class="col-sm">
+                                        <input type="text" class="form-control" name="keterangan">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Jumlah</label>
+                                    <div class="col-sm">
+                                        <input type="number" class="form-control" name="jumlah">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End of Page Contain -->
+
+
+            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- Emd of Content Wrapper -->
+
+    </div>
+</div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
+</body>
+</html>
