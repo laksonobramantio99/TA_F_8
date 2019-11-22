@@ -1,39 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymelaf.org">
-<head>
-    <title> List Pengajuan Surat </title>
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <head>
+        <title> SITU </title>
+        <!-- css -->
+        <div th:include="fragments/fragment :: css" th:remove="tag"></div>
+        <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+        <script type="text/javascript" charset="utf8"
+                src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+    </head>
 </head>
 
-<body>
+<!-- TEMPLATE -->
+<body id="page-top">
+<div id="wrapper">
 
-<h2 align="center" style="margin: 20px; color: black"> Daftar Pengajuan Surat</h2>
+    <!--SideBar-->
+    <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+    <!--End Of SideBar-->
 
-<container>
-    <div class="card">
-        <table class="table" style="margin-top: 20px">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Kode</th>
-                        <th scope="col">Tanggal Pengajuan</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each = "surat, iterationStatus: ${pengajuanSuratList}">
-                        <th scope="row" th:text="${iterationStatus.count}"></th>
-                        <td th:text ="${surat.nomorSurat}">  </td>
-                        <td th:text="${surat.tanggalPengajuan}"></td>
-                        <td th:text="${surat.stringStatus}"></td>
-                    </tr>
-                    </tbody>
-        </table>
+<!--    <h2 th:text="${errorMessage}"></h2>-->
+
+    <!-- Content Wrapper-->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Contenr -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+            <!-- End of Topbar -->
+
+<!--            <div th:if="${statusHapus == 'berhasil dihapus'}" class="container-fluid">-->
+<!--                <div class="alert alert-success alert-dismissible fade show" role="alert">-->
+<!--                    <strong>BERHASIL!</strong>-->
+<!--                    <span th:text="'Suurat dengan nomor '"></span>-->
+<!--                    <strong th:text="${namaJenisSuratTarget}"></strong>-->
+<!--                    <span th:text="' berhasil dihapus dari sistem'">></span>-->
+<!--                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- List Semua Jenis Surat -->
+                <div class="card">
+                    <div class="card-header font-weight-bold">
+                        Pengajuan Surat
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="table_id" class="table display">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nomor Surat</th>
+                                    <th>Tanggal Pengajuan</th>
+                                    <th>Keterangan</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="surat, iterationStatus : ${pengajuanSuratList}">
+                                    <td th:text="${iterationStatus.count}"></td>
+                                    <td  th:text="${surat.nomorSurat}"></td>
+                                    <td th:text="${surat.tanggalPengajuan}"></td>
+                                    <td th:text="${surat.keterangan}"></td>
+                                    <td style="text-align: right">
+<!--                                        <a th:href="@{/jenis-surat/hapus/} + ${jenisSurat.id}">-->
+                                            <button type="button" class="btn btn-sm btn-danger mb-2">Hapus</button>
+<!--                                        </a>-->
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+            <!-- End of Page Contain -->
+        </div>
+        <!-- End of Main Content -->
+
+
+        <!-- Footer -->
+        <footer th:replace="fragments/footer :: footer-bottom"></footer>
+        <!-- End of Footer -->
 
     </div>
-</container>
+    <!-- Emd of Content Wrapper -->
 
+</div>
+
+<!-- scripts -->
+
+
+<!--./ scripts -->
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
 </body>
+<!-- END OF TEMPLATE -->
+
 </html>

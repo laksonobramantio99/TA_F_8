@@ -28,6 +28,7 @@ public class UserModel implements Serializable {
     @NotNull
     @Lob
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -37,9 +38,11 @@ public class UserModel implements Serializable {
     private RoleModel role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<PengajuanSuratModel> listPengajuanSurat;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<LowonganModel> listLowongan;
 
     public String getUuid() {
