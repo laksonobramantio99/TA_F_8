@@ -1,5 +1,7 @@
 package apap.tugas.situ.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +27,7 @@ public class JenisSuratModel implements Serializable {
     private String keterangan;
 
     @OneToMany(mappedBy = "jenisSurat", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<PengajuanSuratModel> listPengajuanSurat;
 
     public Integer getId() {

@@ -17,6 +17,7 @@ public class PengajuanSuratModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Integer id;
 
     @NotNull
@@ -27,10 +28,12 @@ public class PengajuanSuratModel implements Serializable {
     @NotNull
     @Column(name = "tanggalPengajuan", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonIgnore
     private Date tanggalPengajuan;
 
     @Column(name = "tanggalDisetujui", nullable = true)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonIgnore
     private Date tanggalDisetujui;
 
     @NotNull
@@ -44,18 +47,17 @@ public class PengajuanSuratModel implements Serializable {
 
     //Untuk sementara masih menggunakan penginputan manual, jika sudah ada fitur add akan ditambahkan logic untuk digenerate
     @Column(name = "stringStatus", nullable = true)
+    @JsonIgnore
     private String stringStatus;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "uuidUser", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private UserModel user;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idJenis", referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private JenisSuratModel jenisSurat;
 
     public Integer getId() {
