@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,11 +70,32 @@ public class LowonganController {
     @RequestMapping(value = "/lowongan/tambah", method = RequestMethod.GET)
     public String tambahLowonganForm(Model model) {
         List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAll();
+        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.getByNama("Pustakawan").get();
+        listJenisLowongan.remove(jenisLowonganPustakawan);
         LowonganModel lowongan = new LowonganModel();
 
         model.addAttribute("listJenisLowongan", listJenisLowongan);
         model.addAttribute("lowongan", lowongan);
         return "form-tambah-lowongan";
+    }
+
+    @RequestMapping(value = "/lowongan/tambahPustakawan", method = RequestMethod.GET)
+    public String tambahLowonganPustakawanForm(Model model) {
+        java.util.Date utilDate = new Date();
+        java.sql.Date today = new java.sql.Date(utilDate.getTime());
+        java.sql.Date day30 = addDays(today, 30);
+
+        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.getByNama("Pustakawan").get();
+        LowonganModel lowongan = new LowonganModel();
+        lowongan.setJudul("Lowongan Pustakawan");
+        lowongan.setTanggalDibuka(today);
+        lowongan.setTanggalDitutup(day30);
+        lowongan.setKeterangan("Dibutuhkan Pustakawan Cakap");
+        lowongan.setJumlah(5);
+
+        model.addAttribute("jenisLowonganPustakawan", jenisLowonganPustakawan);
+        model.addAttribute("lowongan", lowongan);
+        return "form-tambah-lowongan-pustakawan";
     }
 
     @RequestMapping(value = "/lowongan/tambah", method = RequestMethod.POST)
@@ -86,4 +108,10 @@ public class LowonganController {
         return "tambah-lowongan";
     }
 
+    public static java.sql.Date addDays(Date date, int days) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, days);
+        return new java.sql.Date(c.getTimeInMillis());
+    }
 }

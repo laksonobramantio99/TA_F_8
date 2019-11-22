@@ -1,10 +1,16 @@
 package apap.tugas.situ.service;
 
+import apap.tugas.situ.rest.Setting;
+import apap.tugas.situ.rest.UserDetail;
+import com.fasterxml.jackson.databind.deser.SettableAnyProperty;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -12,9 +18,11 @@ import java.util.Random;
 public class UserRestServiceImpl implements UserRestService {
     final public static String sisivitasUrl = "http://sivitas.herokuapp.com";
     private final WebClient webClient;
+    private final WebClient webClientListUser;
 
     public UserRestServiceImpl(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl(sisivitasUrl).build();
+        this.webClientListUser = webClientBuilder.baseUrl(Setting.listUserUrl).build();
     }
 
     @Override
@@ -52,4 +60,15 @@ public class UserRestServiceImpl implements UserRestService {
         nip += uuid;
         return nip;
     }
+
+//    @Override
+//    public String getListUsersPustakawan() {
+//        String list = this.webClientListUser.get().uri("/api/users")
+//                .retrieve().bodyToMono(String.class).block();
+//
+//        JSONObject json = new JSONObject(list);
+//        list =
+//    }
+
+
 }

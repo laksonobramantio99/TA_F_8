@@ -36,49 +36,49 @@
                         <div class="card container-fluid p-5">
                             <h3>Tambah Lowongan</h3>
                             <div class="row ml-0 mb-2">
-                                <button type="button" class="btn btn-primary" disabled>Non-Pustakawan</button>
-                                <a th:href="@{/lowongan/tambahPustakawan}">
-                                    <button type="button" class="btn btn-primary">Pustakawan</button>
+                                <a th:href="@{/lowongan/tambah}">
+                                    <button type="button" class="btn btn-primary">Non-Pustakawan</button>
                                 </a>
+                                <button type="button" class="btn btn-primary" disabled>Pustakawan</button>
                             </div>
 
                             <form method="post" th:action="@{/lowongan/tambah}" th:object="${lowongan}">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Jenis Lowongan</label>
                                     <div class="col-sm">
-                                        <select class="form-control" name="jenisLowongan">
-                                            <option th:each="jenisLowongan : ${listJenisLowongan}" th:text="${jenisLowongan.nama}" th:value="${jenisLowongan.id}"></option>
+                                        <select class="form-control" name="jenisLowongan" readonly>
+                                            <option th:text="${jenisLowonganPustakawan.nama}" th:value="${jenisLowonganPustakawan.id}"></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Judul</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="judul">
+                                        <input type="text" class="form-control" name="judul" th:value="${lowongan.judul}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Tanggal Dibuka</label>
                                     <div class="col-sm">
-                                        <input type="date" class="form-control" name="tanggalDibuka">
+                                        <input type="date" class="form-control" name="tanggalDibuka" th:value="${lowongan.tanggalDibuka}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Tanggal Ditutup</label>
                                     <div class="col-sm">
-                                        <input type="date" class="form-control" name="tanggalDitutup">
+                                        <input type="date" class="form-control" name="tanggalDitutup" th:value="${lowongan.tanggalDitutup}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Keterangan</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="keterangan">
+                                        <input type="text" class="form-control" name="keterangan" th:value="${lowongan.keterangan}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">Jumlah</label>
                                     <div class="col-sm">
-                                        <input type="number" class="form-control" name="jumlah">
+                                        <input type="number" class="form-control" name="jumlah" th:value="${lowongan.jumlah}" readonly>
                                     </div>
                                 </div>
 
