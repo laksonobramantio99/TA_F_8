@@ -1,4 +1,4 @@
-package apap.tugas.situ.controller;
+package apap.tugas.situ.restcontroller;
 
 import apap.tugas.situ.service.PeminjamanRestService;
 import org.json.JSONObject;
