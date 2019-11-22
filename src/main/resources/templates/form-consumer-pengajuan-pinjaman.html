@@ -34,11 +34,11 @@
 
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>BERHASIL!</strong>
-                        <span th:text="'Pada tanggal '"></span>
-                        <strong th:text="${tanggalPeminjaman}"></strong>
-                        <span th:text="' uang sebesar Rp.'"></span>
+                        <span th:text="'User dengan nama '"></span>
+                        <strong th:text="${namaUser}"></strong>
+                        <span th:text="' sukses meminjam uang sebesar Rp.'"></span>
                         <strong th:text="${jumlahPinjaman}"></strong>
-                        <span th:text="' berhasil dipinjamkan oleh SI Koperasi '"></span>
+                        <span th:text="' dari SI Koperasi '"></span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times</span>
                         </button>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="container-fluid">
-                    <div style="margin-top: 30px" class="card">
+                    <div class="card">
                         <div class="card-header font-weight-bold">
                             <span class="font-weight-bolder text-primary mr-1" th:text="'SI KOPERASI'"></span>
                             <span style="border-left:2px solid grey;height:90px"></span>
@@ -56,12 +56,11 @@
                             <form class="form-horizontal"
                                   th:action="@{/formulir-peminjaman}" method="POST">
                                 <div class="form-group">
-                                    <label>Tanggal Pengajuan Peminjaman</label>
                                     <div>
-                                        <input placeholder="Tanggal"
-                                               type="date"
+                                        <input
+                                               type="hidden"
                                                class="form-control"
-                                               name="tanggalPeminjaman">
+                                               name="uuid">
                                     </div>
                                 </div>
                                 <div class="form-group">
