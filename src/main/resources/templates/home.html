@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
 
@@ -34,31 +32,36 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- ISI DISINI IMPLEMENTASI KALIAN -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">Tambah User Baru</div>
-                                <div class="card-body">
-                                    <form th:action="@{/user/addUser}" method="POST">
-                                        <label>User Name</label>
-                                        <input type="text" name="username" class="form-control" />
-
-                                        <label>Password</label>
-                                        <input type="password" name="password" class="form-control" />
-
-                                        <label>Role</label>
-                                        <select name="role" class="form-control">
-                                            <option selected value="">-- Pilih role --</option>
-                                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.nama}"></option>
-                                        </select>
-
-                                        <br>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="container" style="text-align: center">
+                        <img style="width: 95vh" th:src="@{/img/bg.png}" alt="situ-home-bg">
                     </div>
+
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="card">-->
+<!--                                <div class="card-header">Tambah User Baru</div>-->
+<!--                                <div class="card-body">-->
+<!--                                    <form th:action="@{/user/addUser}" method="POST">-->
+<!--                                        <label>User Name</label>-->
+<!--                                        <input type="text" name="username" class="form-control"/>-->
+
+<!--                                        <label>Password</label>-->
+<!--                                        <input type="password" name="password" class="form-control"/>-->
+
+<!--                                        <label>Role</label>-->
+<!--                                        <select name="role" class="form-control">-->
+<!--                                            <option selected value="">&#45;&#45; Pilih role &#45;&#45;</option>-->
+<!--                                            <option th:each="roleAvailable : ${listRole}" th:value="${roleAvailable.id}"-->
+<!--                                                    th:text="${roleAvailable.nama}"></option>-->
+<!--                                        </select>-->
+
+<!--                                        <br>-->
+<!--                                        <button type="submit" class="btn btn-primary">Simpan</button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
                 <!-- End of Page Contain -->
 
@@ -67,9 +70,6 @@
             <!-- End of Main Content -->
 
 
-            <!-- Footer -->
-            <footer th:replace="fragments/footer :: footer-bottom"></footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- Emd of Content Wrapper -->
@@ -77,8 +77,6 @@
     </div>
 </div>
 <!-- END OF TEMPLATE -->
-
-
 
 
 <!-- scripts -->
