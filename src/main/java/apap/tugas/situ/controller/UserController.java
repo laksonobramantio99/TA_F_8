@@ -40,13 +40,19 @@ public class UserController {
     @Autowired
     private UserRestService userRestService;
 
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
+    public String addUserAllForm(Model model) {
+        model.addAttribute("listRole", roleService.findAll());
+        return "form-add-user-all";
+    }
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user, Principal principal, Model model) {
         userService.addUser(user);
         String role = userService.findUserByUserName(principal.getName()).getRole().getNama();
         model.addAttribute("listRole", roleService.findAll());
         model.addAttribute("role", role);
-        return "home";
+        return "form-add-user-all";
     }
 
 
@@ -63,7 +69,7 @@ public class UserController {
         }else if (user.getRole().getNama().equals("Siswa")){
             System.out.println("masuk2");
             role = "students";
-        }else if (user.getRole().getNama().equals("Guru")) {
+        }else if (user.getRole().getNama().equals("Guru") || user.getRole().getNama().equals("Kepala Sekolah") ) {
             System.out.println("masuk3");
             role = "teachers";
         }
