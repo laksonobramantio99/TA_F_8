@@ -76,8 +76,8 @@ public class LowonganController {
 
     @RequestMapping(value = "/lowongan/tambah", method = RequestMethod.GET)
     public String tambahLowonganForm(Model model) {
-        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAll();
-        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.getByNama("Pustakawan").get();
+        List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
+        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.findByNama("Pustakawan");
         listJenisLowongan.remove(jenisLowonganPustakawan);
         LowonganModel lowongan = new LowonganModel();
 
@@ -104,7 +104,7 @@ public class LowonganController {
             jumlahPustakawanDibutuhkan = 0;
         }
 
-        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.getByNama("Pustakawan").get();
+        JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.findByNama("Pustakawan");
         LowonganModel lowongan = new LowonganModel();
         lowongan.setJudul("Lowongan Pustakawan");
         lowongan.setTanggalDibuka(today);
