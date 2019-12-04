@@ -3,11 +3,14 @@ package apap.tugas.situ.controller;
 import apap.tugas.situ.model.JenisLowonganModel;
 import apap.tugas.situ.model.LowonganModel;
 import apap.tugas.situ.model.UserModel;
+import apap.tugas.situ.rest.UserSiperpusDetail;
 import apap.tugas.situ.service.JenisLowonganService;
+import apap.tugas.situ.service.LowonganRestService;
 import apap.tugas.situ.service.LowonganService;
 import apap.tugas.situ.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LowonganController {
@@ -29,6 +33,9 @@ public class LowonganController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LowonganRestService lowonganRestService;
 
     @RequestMapping(value = "/lowongan", method = RequestMethod.GET)
     public String viewAllLowongan(Model model) {
@@ -85,13 +92,25 @@ public class LowonganController {
         java.sql.Date today = new java.sql.Date(utilDate.getTime());
         java.sql.Date day30 = addDays(today, 30);
 
+        int jumlahPustakawan = 0;
+        List<Map> listUserSiperpus = lowonganRestService.getListUserSiperpus();
+        for (Map x : listUserSiperpus) {
+            if (x.get("role").equals("Pustakawan")) {
+                jumlahPustakawan++;
+            }
+        }
+        int jumlahPustakawanDibutuhkan = 5 - jumlahPustakawan;
+        if (jumlahPustakawanDibutuhkan < 0) {
+            jumlahPustakawanDibutuhkan = 0;
+        }
+
         JenisLowonganModel jenisLowonganPustakawan = jenisLowonganService.getByNama("Pustakawan").get();
         LowonganModel lowongan = new LowonganModel();
         lowongan.setJudul("Lowongan Pustakawan");
         lowongan.setTanggalDibuka(today);
         lowongan.setTanggalDitutup(day30);
         lowongan.setKeterangan("Dibutuhkan Pustakawan Cakap");
-        lowongan.setJumlah(5);
+        lowongan.setJumlah(jumlahPustakawanDibutuhkan);
 
         model.addAttribute("jenisLowonganPustakawan", jenisLowonganPustakawan);
         model.addAttribute("lowongan", lowongan);
