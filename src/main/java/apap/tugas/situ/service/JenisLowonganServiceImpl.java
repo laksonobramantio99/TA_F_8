@@ -12,15 +12,22 @@ import java.util.Optional;
 public class JenisLowonganServiceImpl implements JenisLowonganService {
 
     @Autowired
-    private JenisLowonganDB jenisLowonganDB;
+    JenisLowonganDB jenisLowonganDB;
+
 
     @Override
-    public List<JenisLowonganModel> getAll() {
+    public void addJenisLowongan(JenisLowonganModel jenisLowongan) {
+        jenisLowonganDB.save(jenisLowongan);
+
+    }
+
+    @Override
+    public List<JenisLowonganModel> getAllJenisLowongan() {
         return jenisLowonganDB.findAll();
     }
 
     @Override
-    public Optional<JenisLowonganModel> getByNama(String nama) {
+    public JenisLowonganModel findByNama(String nama) {
         return jenisLowonganDB.findByNama(nama);
     }
 }

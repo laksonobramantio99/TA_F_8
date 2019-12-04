@@ -4,11 +4,7 @@ import apap.tugas.situ.model.JenisLowonganModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
 public interface JenisLowonganDB extends JpaRepository<JenisLowonganModel, Integer> {
-    List<JenisLowonganModel> findAll();
-    Optional<JenisLowonganModel> findByNama(String nama);
+    JenisLowonganModel findByNama(String nama);
 }
