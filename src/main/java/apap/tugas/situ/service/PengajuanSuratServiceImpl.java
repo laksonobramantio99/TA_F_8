@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -60,5 +61,20 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
             return null;
         }
     }
+
+    @Override
+    public void tambahSurat(PengajuanSuratModel surat){
+        surat.setNomorSurat("0");
+        surat.setTanggalPengajuan(new Date());
+        surat.setStatus(0);
+        surat.setTanggalDisetujui(null);
+        pengajuanSuratDb.save(surat);
+    }
+
+    @Override
+    public void hapusSurat(PengajuanSuratModel surat) {
+        pengajuanSuratDb.delete(surat);
+    }
 }
+
 
