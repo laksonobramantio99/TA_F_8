@@ -33,7 +33,7 @@
             <!-- Topbar -->
             <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
             <!-- End of Topbar -->
-            
+
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- List Semua Jenis Surat -->
@@ -59,6 +59,11 @@
                                     <td  th:text="${surat.nomorSurat}"></td>
                                     <td th:text="${surat.tanggalPengajuan}"></td>
                                     <td th:text="${surat.keterangan}"></td>
+                                    <td style="text-align: right">
+                                        <a th:href="@{/surat/ubahStatus/} + ${surat.id}">
+                                            <button type="button" class="btn btn-sm btn-danger mb-2">Hapus</button>
+                                        </a>
+                                    </td>
                                     <td style="text-align: right">
                                         <a th:href="@{/surat/hapus/} + ${surat.id}">
                                             <button type="button" class="btn btn-sm btn-danger mb-2">Hapus</button>
