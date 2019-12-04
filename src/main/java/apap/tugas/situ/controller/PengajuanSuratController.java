@@ -110,7 +110,7 @@ public class PengajuanSuratController {
 
         model.addAttribute("nomorSurat", mySurat.getNomorSurat());
         model.addAttribute( "statusHapus", "berhasil dihapus");
-        
+
         return "delete-success-surat";
     }
 
