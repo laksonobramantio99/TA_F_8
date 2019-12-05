@@ -37,7 +37,7 @@
                         <div th:if="${statusHapus == 'berhasil dihapus'}" class="container-fluid">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong>BERHASIL!</strong>
-                                <span th:text="'Jenis surat dengan nama '"></span>
+                                <span th:text="'Surat dengan nomor '"></span>
                                 <strong th:text="${nomorSurat}"></strong>
                                 <span th:text="' berhasil dihapus dari sistem'">></span>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -73,7 +73,10 @@
                                     <td  th:text="${surat.nomorSurat}"></td>
                                     <td th:text="${surat.tanggalPengajuan}"></td>
                                     <td th:text="${surat.keterangan}"></td>
-                                    <td style="text-align: right">
+                                    <td style="text-align: center">
+                                        <a th:href="@{/surat/ubahStatus/} + ${surat.id}">
+                                            <button type="button" class="btn btn-sm btn-primary mb-2">Ubah</button>
+                                        </a>
                                         <a th:href="@{/surat/hapus/} + ${surat.id}">
                                             <button type="button" class="btn btn-sm btn-danger mb-2">Hapus</button>
                                         </a>
