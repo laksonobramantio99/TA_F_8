@@ -1,6 +1,5 @@
 package apap.tugas.situ.service;
 
-
 import apap.tugas.situ.repository.UserDB;
 import apap.tugas.situ.rest.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +72,4 @@ public class UserRestServiceImpl implements UserRestService {
         nip += uuid;
         return nip;
     }
-
-
 }

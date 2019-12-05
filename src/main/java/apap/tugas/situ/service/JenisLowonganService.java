@@ -9,5 +9,3 @@ public interface JenisLowonganService {
     List<JenisLowonganModel> getAllJenisLowongan();
     JenisLowonganModel findByNama(String nama);
     void deleteJenisLowongan(JenisLowonganModel jenisLowongan);
-
-}
