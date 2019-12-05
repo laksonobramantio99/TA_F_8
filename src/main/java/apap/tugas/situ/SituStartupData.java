@@ -9,6 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class SituStartupData implements ApplicationRunner {
     @Autowired
@@ -19,15 +21,22 @@ public class SituStartupData implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // Tambah role kepala sekolah
-        RoleModel roleKepses = new RoleModel();
-        roleKepses.setNama("Kepala Sekolah");
-        roleService.addRole(roleKepses);
 
-        // Tambah role Admin TU
-        RoleModel roleAdminTU = new RoleModel();
-        roleAdminTU.setNama("Admin TU");
-        roleService.addRole(roleAdminTU);
+        // Tambah role
+        String[] listRole = {
+                "Kepala Sekolah",
+                "Admin TU",
+                "Guru",
+                "Siswa",
+                "Pustakawan",
+                "Pengurus Koperasi",
+                "Anggota Koperasi"
+        };
+        for (String roleName : listRole) {
+            RoleModel role = new RoleModel();
+            role.setNama(roleName);
+            roleService.addRole(role);
+        }
 
         // Tambah user admin
         UserModel userAdmin = new UserModel();
