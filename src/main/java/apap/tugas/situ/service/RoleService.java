@@ -9,4 +9,5 @@ public interface RoleService {
 
     List<RoleModel> findAll();
     Optional<RoleModel> getByNama(String nama);
+    void addRole(RoleModel roleModel);
 }
