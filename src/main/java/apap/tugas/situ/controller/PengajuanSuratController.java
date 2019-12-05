@@ -54,12 +54,12 @@ public class PengajuanSuratController {
     public String viewAllPengajuan(Model model) {
         UserModel userModel = userService.findUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if (userModel.getRole().equals("Admin TU")) {
-            List<PengajuanSuratModel> pengajuanSuratModelList = pengajuanSuratService.getPengajuanSuratList();
-            model.addAttribute("pengajuanSuratList", pengajuanSuratModelList);
-        } else{
+        if (userModel.getRole().equals("Guru") || userModel.getRole().equals("Siswa") ) {
             List<PengajuanSuratModel> pengajuanSuratModelListUser = pengajuanSuratService.getPengajuanSuratListUser(userModel.getUuid());
             model.addAttribute("pengajuanSuratList", pengajuanSuratModelListUser);
+        } else{
+            List<PengajuanSuratModel> pengajuanSuratModelList = pengajuanSuratService.getPengajuanSuratList();
+            model.addAttribute("pengajuanSuratList", pengajuanSuratModelList);
         }
 
         return "view-all-surat";
