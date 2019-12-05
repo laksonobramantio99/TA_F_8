@@ -75,6 +75,11 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
     public void hapusSurat(PengajuanSuratModel surat) {
         pengajuanSuratDb.delete(surat);
     }
+
+    @Override
+    public List<PengajuanSuratModel> getPengajuanSuratListUser(String uuid) {
+        return pengajuanSuratDb.findAllByUser_Uuid(uuid);
+    }
 }
 
 

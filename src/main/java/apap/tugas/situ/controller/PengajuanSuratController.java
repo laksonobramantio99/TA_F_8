@@ -51,10 +51,16 @@ public class PengajuanSuratController {
     }
 
     @GetMapping(value = "/surat")
-    public String viewAllPengajuan(Model model){
-        List<PengajuanSuratModel> pengajuanSuratModelList = pengajuanSuratService.getPengajuanSuratList();
+    public String viewAllPengajuan(Model model) {
+        UserModel userModel = userService.findUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        model.addAttribute("pengajuanSuratList", pengajuanSuratModelList);
+        if (userModel.getRole().equals("Admin TU")) {
+            List<PengajuanSuratModel> pengajuanSuratModelList = pengajuanSuratService.getPengajuanSuratList();
+            model.addAttribute("pengajuanSuratList", pengajuanSuratModelList);
+        } else{
+            List<PengajuanSuratModel> pengajuanSuratModelListUser = pengajuanSuratService.getPengajuanSuratListUser(userModel.getUuid());
+            model.addAttribute("pengajuanSuratList", pengajuanSuratModelListUser);
+        }
 
         return "view-all-surat";
     }

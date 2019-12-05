@@ -12,5 +12,6 @@ public interface PengajuanSuratService {
     PengajuanSuratModel ubahSurat(PengajuanSuratModel surat);
     void tambahSurat(PengajuanSuratModel surat);
     void hapusSurat(PengajuanSuratModel surat);
+    List<PengajuanSuratModel> getPengajuanSuratListUser(String uuid);
 
 }
