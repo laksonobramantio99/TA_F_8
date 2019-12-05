@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class SituStartupData implements ApplicationRunner {
+public class SituStartupData_bak implements ApplicationRunner {
     @Autowired
     private RoleService roleService;
 
