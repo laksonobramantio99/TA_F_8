@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class PeminjamanRestServiceImpl implements PeminjamanRestService {
 
-    String peminjamanUrl = "https://8b8bd12d-6efb-47a7-8ed6-25c08f11a398.mock.pstmn.io";
+    String peminjamanUrl = "https://sikoperasi-f5.herokuapp.com/api/f5/pinjaman/ajukan";
 
     private final WebClient webClient;
 
@@ -39,7 +39,7 @@ public class PeminjamanRestServiceImpl implements PeminjamanRestService {
 
 
         return this.webClient.post()
-                .uri("/tambah-pinjaman")
+                .uri("")
                 .header("Content-Type", "application/json")
                 .syncBody(jsonReqBody)
                 .retrieve()

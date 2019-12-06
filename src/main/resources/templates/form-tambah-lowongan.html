@@ -3,7 +3,7 @@
 
 <head>
     <head>
-        <title>SITU - Form Tambah Surat </title>
+        <title>SITU - Tambah Lowongan</title>
         <!-- css -->
         <div th:include="fragments/fragment :: css" th:remove="tag"></div>
         <!--./ css -->
@@ -34,49 +34,51 @@
                     <!-- ISI DISINI IMPLEMENTASI KALIAN -->
                     <div class="container">
                         <div class="card container-fluid p-5">
-                            <h3>Tambah User Admin TU</h3>
-                            <form method="post" th:action="@{/user/tambah}">
+                            <h3>Tambah Lowongan</h3>
+                            <div class="row ml-0 mb-2">
+                                <button type="button" class="btn btn-primary" disabled>Non-Pustakawan</button>
+                                <a th:href="@{/lowongan/tambahPustakawan}">
+                                    <button type="button" class="btn btn-primary">Pustakawan</button>
+                                </a>
+                            </div>
+
+                            <form method="post" th:action="@{/lowongan/tambah}" th:object="${lowongan}">
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Username</label>
+                                    <label class="col-sm-4 col-form-label">Jenis Lowongan</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="username">
+                                        <select class="form-control" name="jenisLowongan">
+                                            <option th:each="jenisLowongan : ${listJenisLowongan}" th:text="${jenisLowongan.nama}" th:value="${jenisLowongan.id}"></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Password</label>
+                                    <label class="col-sm-4 col-form-label">Judul</label>
                                     <div class="col-sm">
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Nama</label>
-                                    <div class="col-sm">
-                                        <input type="text" class="form-control" name="nama">
+                                        <input type="text" class="form-control" name="judul">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Tempat Lahir</label>
+                                    <label class="col-sm-4 col-form-label">Tanggal Dibuka</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="tempatLahir">
+                                        <input type="date" class="form-control" name="tanggalDibuka">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                                    <label class="col-sm-4 col-form-label">Tanggal Ditutup</label>
                                     <div class="col-sm">
-                                        <input type="date" class="form-control" name="tanggalLahir">
+                                        <input type="date" class="form-control" name="tanggalDitutup">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Alamat</label>
+                                    <label class="col-sm-4 col-form-label">Keterangan</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="alamat">
+                                        <input type="text" class="form-control" name="keterangan">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label">Nomor Telepon</label>
+                                    <label class="col-sm-4 col-form-label">Jumlah</label>
                                     <div class="col-sm">
-                                        <input type="text" class="form-control" name="noTelepon">
+                                        <input type="number" class="form-control" name="jumlah">
                                     </div>
                                 </div>
 
@@ -85,7 +87,6 @@
                         </div>
 
                     </div>
-
                 </div>
                 <!-- End of Page Contain -->
 

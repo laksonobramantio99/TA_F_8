@@ -90,7 +90,7 @@ public class JenisSuratController {
         return "view-jenis-surat.html";
     }
 
-    @RequestMapping(path = "/jenis-surat/hapus/{id}")
+    @PostMapping(path = "/jenis-surat/hapus/{id}")
     public ModelAndView hapusJenisSurat(@PathVariable Integer id, ModelMap model, RedirectAttributes redirAttrs) {
         String namaJenisSuratTarget = jenisSuratService.getJenisSuratById(id).get().getNama();
         List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
