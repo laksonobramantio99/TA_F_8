@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <head>
@@ -23,7 +23,7 @@
     <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
     <!--End Of SideBar-->
 
-<!--    <h2 th:text="${errorMessage}"></h2>-->
+    <!--    <h2 th:text="${errorMessage}"></h2>-->
 
     <!-- Content Wrapper-->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -56,13 +56,15 @@
                                 <tbody>
                                 <tr th:each="surat, iterationStatus : ${pengajuanSuratList}">
                                     <td th:text="${iterationStatus.count}"></td>
-                                    <td  th:text="${surat.nomorSurat}"></td>
+                                    <td th:text="${surat.nomorSurat}"></td>
                                     <td th:text="${surat.tanggalPengajuan}"></td>
                                     <td th:text="${surat.keterangan}"></td>
                                     <td style="text-align: center">
-                                        <a th:href="@{/surat/ubahStatus/} + ${surat.id}">
-                                            <button type="button" class="btn btn-sm btn-primary mb-2">Ubah</button>
-                                        </a>
+                                        <div sec:authorize="hasAnyAuthority('Admin TU', 'Kepala Sekolah')">
+                                            <a th:href="@{/surat/ubahStatus/} + ${surat.id}">
+                                                <button type="button" class="btn btn-sm btn-primary mb-2">Ubah</button>
+                                            </a>
+                                        </div>
                                         <a th:href="@{/surat/hapus/} + ${surat.id}">
                                             <button type="button" class="btn btn-sm btn-danger mb-2">Hapus</button>
                                         </a>

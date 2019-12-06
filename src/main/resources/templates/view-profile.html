@@ -31,20 +31,20 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1>User Profile</h1>
                     <div class="card" >
+                        <div class="card-header font-weight-bold">User Profile</div>
                         <table class="table">
                             <tr>
-                                <td>Username</td>
-                                <td th:text="${user.username}"></td>
+                                <td>Username:</td>
+                                <td class="text-capitalize" th:text="${user.username}"></td>
                             </tr>
                             <tr>
-                                <td>Role</td>
+                                <td>Role:</td>
                                 <td th:text="${user.role.nama}"></td>
                             </tr>
                             <div th:if="${profile != null}">
                                 <tr>
-                                    <td>Nama</td>
+                                    <td>Nama:</td>
                                     <td th:text="${profile.get('result').get('nama')}"></td>
                                 </tr>
                                 <tr>
@@ -61,19 +61,19 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Tempat Lahir</td>
+                                    <td>Tempat Lahir:</td>
                                     <td th:text="${profile.get('result').get('tempatLahir')}"></td>
                                 </tr>
                                 <tr>
-                                    <td>Tanggal Lahir</td>
+                                    <td>Tanggal Lahir:</td>
                                     <td th:text="${profile.get('result').get('tanggalLahir')}"></td>
                                 </tr>
                                 <tr>
-                                    <td>Alamat</td>
+                                    <td>Alamat:</td>
                                     <td th:text="${profile.get('result').get('alamat')}"></td>
                                 </tr>
                                 <tr>
-                                    <td>Telepon</td>
+                                    <td>Telepon:</td>
                                     <td th:text="${profile.get('result').get('telepon')}"></td>
                                 </tr>
                             </div>
