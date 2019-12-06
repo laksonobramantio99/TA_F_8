@@ -30,7 +30,7 @@ public class SuratRestController {
     @Autowired
     private JenisSuratService jenisSuratService;
 
-    @PostMapping(value = "/surat/tambah/")
+    @PostMapping(value = "/surat/tambah")
     private BaseResponse<PengajuanSuratModel> createSurat(@RequestBody SuratDetail surat, BindingResult bindingResult){
         BaseResponse<PengajuanSuratModel> response = new BaseResponse<PengajuanSuratModel>();
         if (bindingResult.hasFieldErrors()){

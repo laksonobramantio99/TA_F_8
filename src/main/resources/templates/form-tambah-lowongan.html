@@ -47,7 +47,9 @@
                                     <label class="col-sm-4 col-form-label">Jenis Lowongan</label>
                                     <div class="col-sm">
                                         <select class="form-control" name="jenisLowongan">
-                                            <option th:each="jenisLowongan : ${listJenisLowongan}" th:text="${jenisLowongan.nama}" th:value="${jenisLowongan.id}"></option>
+                                            <option th:each="jenisLowongan : ${listJenisLowongan}"
+                                                    th:text="${jenisLowongan.nama}"
+                                                    th:value="${jenisLowongan.id}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -82,7 +84,9 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div style="float: right;">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
                             </form>
                         </div>
 
@@ -105,8 +109,6 @@
     </div>
 </div>
 <!-- END OF TEMPLATE -->
-
-
 
 
 <!-- scripts -->

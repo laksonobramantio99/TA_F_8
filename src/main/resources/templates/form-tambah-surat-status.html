@@ -3,7 +3,7 @@
 
 <head>
     <head>
-        <title>SITU - Form Tambah Surat </title>
+        <title>SITU - Form Tambah Jenis Surat </title>
         <!-- css -->
         <style th:include="fragments/fragment :: css" th:remove="tag"></style>
         <!--./ css -->
@@ -60,11 +60,11 @@
                     <!-- Form Penambahan Jenis Surat -->
                     <div class="card">
                         <div class="card-header">
-                            <div class="font-weight-bold">Form Tambah Surat</div>
+                            <div class="font-weight-bold">Form Tambah Jenis Surat</div>
                         </div>
                         <div class="card-body">
                             <form class="form-horizontal" th:object="${calonJenisSurat}"
-                                  th:action="@{/jenis-surat/tambah}" method="POST">
+                                  th:action="@{/jenisSurat/tambah}" method="POST">
                                 <div class="form-group">
                                     <label>Nama:</label>
                                     <div>

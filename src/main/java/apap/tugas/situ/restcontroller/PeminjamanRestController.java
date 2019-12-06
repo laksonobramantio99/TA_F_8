@@ -22,13 +22,13 @@ public class PeminjamanRestController {
     @Autowired
     UserService userService;
 
-    @GetMapping(path = "/formulir-peminjaman")
+    @GetMapping(path = "/formulirPeminjaman")
     public String formulirPeminjaman(Model model) {
         model.addAttribute("isPosted", "notPosted");
         return "form-consumer-pengajuan-pinjaman.html";
     }
 
-    @PostMapping(path = "/formulir-peminjaman", params = {"jumlahPinjaman"})
+    @PostMapping(path = "/formulirPeminjaman", params = {"jumlahPinjaman"})
     public String postIsiFormulirPeminjaman(Model model, HttpServletRequest request) {
         UserModel user = userService.findUserByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         String jumlahPinjaman = request.getParameter("jumlahPinjaman");

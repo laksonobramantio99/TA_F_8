@@ -69,6 +69,10 @@
 			<artifactId>json</artifactId>
 			<version>20180130</version>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 
 		<!-- SECURITY -->
 		<dependency>
@@ -104,5 +108,25 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>dev</build.profile.id>
+				<profileActive>dev</profileActive>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<build.profile.id>prod</build.profile.id>
+				<profileActive>prod</profileActive>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>

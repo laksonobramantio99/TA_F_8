@@ -3,7 +3,7 @@
 
 <head>
     <head>
-        <title>SITU - Jenis Lowongan</title>
+        <title>SITU - Tambah Jenis Lowongan</title>
         <!-- css -->
         <div th:include="fragments/fragment :: css" th:remove="tag"></div>
         <!--./ css -->
@@ -31,36 +31,37 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="container-fluid add-pasien" style="width:50%">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+                    <div class="container">
+                        <div class="card container pb-5 pr-3 pl-3">
+                            <form th:action="@{/jenisLowongan/tambah}" th:object="${jenisLowongan}" method="POST">
 
+                                <div class="formContainer">
+                                    <div class="leftContainer">
+                                        <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis
+                                            Lowongan</h3>
+                                        <div class="alert alert-primary" role="alert" th:if="${alert == 'EXIST'}">
+                                            Nama Sudah Ada!
+                                        </div>
+                                        <label class="control-label">Nama:</label>
+                                        <input class="form-control" type="text" th:field="*{nama}">
+                                        <br>
 
-                        <form  th:action="@{/jenisLowongan/add}" th:object="${jenisLowongan}" method="POST">
-
-                            <div class="formContainer">
-                                <div class="leftContainer">
-                                    <h3 style="padding-top: 3rem; padding-bottom: 1.5rem;">Tambah Jenis Lowongan</h3>
-                                    <div class="alert alert-primary" role="alert"  th:if="${alert == 'EXIST'}">
-                                        Nama Sudah Ada!
+                                        <label class="control-label">keterangan:</label>
+                                        <input class="form-control" type="text" th:field="*{keterangan}">
+                                        <br>
+                                        <div style="float: right">
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                        </div>
                                     </div>
-                                    <label class="control-label">Nama:</label>
-                                    <input class="form-control"  type="text" th:field="*{nama}">
-                                    <br>
-
-                                    <label class="control-label">keterangan:</label>
-                                    <input class="form-control" type="text" th:field="*{keterangan}">
-                                    <br>
-
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
                                 </div>
+                            </form>
+                        </div>
 
-
-
-                            </div>
-                        </form>
                     </div>
-
-
                 </div>
+                <!-- End of Page Contain -->
+
                 <!-- End of Page Contain -->
 
 
@@ -78,8 +79,6 @@
     </div>
 </div>
 <!-- END OF TEMPLATE -->
-
-
 
 
 <!-- scripts -->

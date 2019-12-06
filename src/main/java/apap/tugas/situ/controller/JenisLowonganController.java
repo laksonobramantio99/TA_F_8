@@ -35,14 +35,14 @@ public class JenisLowonganController {
         return "view-all-jenis-lowongan";
     }
 
-    @RequestMapping(value = "/jenisLowongan/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/jenisLowongan/tambah", method = RequestMethod.GET)
     private String addJenisLowonganForm(Model model) {
         JenisLowonganModel jenisLowongan = new JenisLowonganModel();
         model.addAttribute("jenisLowongan", jenisLowongan);
         return "form_jenis_lowongan";
     }
 
-    @RequestMapping(value = "/jenisLowongan/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/jenisLowongan/tambah", method = RequestMethod.POST)
     private String addJenisLowonganSubmit(@ModelAttribute JenisLowonganModel jenisLowongan, Model model) {
         JenisLowonganModel existing = jenisLowonganService.findByNama(jenisLowongan.getNama());
         if (existing != null) {
@@ -55,7 +55,7 @@ public class JenisLowonganController {
             jenisLowongan.setListLowongan(listLowongan);
             jenisLowonganService.addJenisLowongan(jenisLowongan);
             model.addAttribute("jenisLowongan", jenisLowongan);
-
+            model.addAttribute("alert", "EXIST");
             List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
             model.addAttribute("listJenisLowongan", listJenisLowongan);
 

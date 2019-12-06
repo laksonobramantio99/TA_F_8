@@ -23,4 +23,9 @@ public class RoleServiceImpl implements RoleService{
     public Optional<RoleModel> getByNama(String nama) {
         return roleDB.findByNama(nama);
     }
+
+    @Override
+    public void addRole(RoleModel roleModel) {
+        roleDB.save(roleModel);
+    }
 }

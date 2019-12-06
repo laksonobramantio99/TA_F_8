@@ -26,8 +26,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .antMatchers("/user/tambah").hasAnyAuthority("Admin TU")
-                .antMatchers("/formulir-peminjaman").hasAnyAuthority("Admin TU")
-                .antMatchers("/jenisLowongan/*").hasAnyAuthority("Admin TU")
+                .antMatchers("/user/addUser").hasAnyAuthority("Admin TU")
+                .antMatchers("/user/profile").permitAll()
+                .antMatchers("/formulirPeminjaman").hasAnyAuthority("Admin TU")
+                .antMatchers("/jenisLowongan/**").hasAnyAuthority("Admin TU")
+                .antMatchers("/jenisSurat/**").hasAnyAuthority("Admin TU")
+                .antMatchers("/lowongan/**").hasAnyAuthority("Admin TU")
+                .antMatchers("/surat/ubahStatus").hasAnyAuthority("Admin TU", "Kepala Sekolah")
                 .anyRequest().authenticated()
                 .antMatchers("/*").permitAll()
                 .and()
@@ -48,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.inMemoryAuthentication()
 //                .passwordEncoder(encoder())
 //                .withUser("nadiem").password(encoder().encode("makarim"))
-//                .roles("USER");
+//                .roles("Admin TU");
 //    }
 
     @Qualifier("userDetailsServiceImpl")

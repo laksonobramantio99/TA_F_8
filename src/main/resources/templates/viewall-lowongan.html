@@ -34,9 +34,6 @@
                 <div class="container-fluid">
                     <!-- ISI DISINI IMPLEMENTASI KALIAN -->
                     <h2>Daftar Lowongan</h2>
-                    <a>
-                        <button type="button" class="btn btn-success ml-0 mb-3">Tambah Lowongan</button>
-                    </a>
                     <div class="card mb-3 container-fluid" th:each="lowongan : ${listLowongan}">
                         <h3 th:text="${lowongan.judul}" class="mt-3"></h3>
                         <div class="table-responsive">
