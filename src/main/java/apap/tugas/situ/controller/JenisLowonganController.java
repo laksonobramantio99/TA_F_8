@@ -55,7 +55,7 @@ public class JenisLowonganController {
             jenisLowongan.setListLowongan(listLowongan);
             jenisLowonganService.addJenisLowongan(jenisLowongan);
             model.addAttribute("jenisLowongan", jenisLowongan);
-
+            model.addAttribute("alert", "EXIST");
             List<JenisLowonganModel> listJenisLowongan = jenisLowonganService.getAllJenisLowongan();
             model.addAttribute("listJenisLowongan", listJenisLowongan);
 
