@@ -37,17 +37,19 @@ public class PeminjamanRestController {
 
         // POST ke SI-Koperasi
         JSONObject requestBody = new JSONObject();
-        requestBody.put("uuid", uuid);
+        requestBody.put("uuid", "df4b3daf-0362-11ea-8121-40b0340b67c7");
         requestBody.put("jumlahPinjaman", jumlahPinjaman);
 
+        System.out.println(uuid);
+        System.out.println(jumlahPinjaman);
 
         model.addAttribute("isPosted", "posted");
-        model.addAttribute("uuid", uuid);
+        model.addAttribute("uuid", "df4b3daf-0362-11ea-8121-40b0340b67c7");
         model.addAttribute("namaUser", namaUser);
         model.addAttribute("jumlahPinjaman", jumlahPinjaman);
 
 
-        String status = peminjamanRestService.postStatus(requestBody);
+        peminjamanRestService.postStatus(requestBody);
 
         return "form-consumer-pengajuan-pinjaman.html";
 

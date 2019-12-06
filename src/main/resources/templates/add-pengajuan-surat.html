@@ -3,7 +3,7 @@
 
 <head>
     <head>
-        <title>SITU - Form Tambah Surat</title>
+        <title> SITU </title>
         <!-- css -->
         <style th:include="fragments/fragment :: css" th:remove="tag"></style>
         <!--./ css -->
@@ -32,18 +32,21 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <!-- Form Penambahan Jenis Surat -->
+                <!-- Form Pengajuan Surat -->
                 <div class="card">
                     <div class="card-header">
-                        <div class="font-weight-bold"> Form Tambah Surat</div>
+                        <div class="font-weight-bold"> Form Pengajuan Surat</div>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" th:object="${calonJenisSurat}"
-                              th:action="@{/jenis-surat/tambah}" method="POST">
+                        <form class="form-horizontal" th:object="${mySurat}"
+                              th:action="@{/surat/tambah}" method="POST">
+                            <input type="hidden" th:field="${mySurat.user.uuid}">
                             <div class="form-group">
-                                <label>Nama:</label>
+                                <label>Jenis Surat :</label>
                                 <div>
-                                    <input type="text" class="form-control" th:field="*{nama}"/>
+                                    <select th:field="${mySurat.jenisSurat}">
+                                        <option th:each="jenisSurat : ${listJenis}" th:text="${jenisSurat.nama}" th:value="${jenisSurat.id}"></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -58,7 +61,6 @@
                         </form>
                     </div>
                 </div>
-                <!-- List Semua Jenis Surat -->
             </div>
             <!-- End of Page Contain -->
         </div>

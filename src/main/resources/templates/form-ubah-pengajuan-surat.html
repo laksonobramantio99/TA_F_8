@@ -1,48 +1,98 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Ubah Status Pengajuan Surat</title>
+    <title>SITU - Ubah Status Pengajuan Surat</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+
 </head>
 
 <body>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card" style="margin: 20px">
-            <div class="card-header">
-                Ubah Pengajuan Surat
+<!-- TEMPLATE -->
+<div id="page-top">
+    <div id="wrapper">
+
+        <!--SideBar-->
+        <object th:replace="fragments/sidebar :: sidebar" th:remove="tag"></object>
+        <!--End Of SideBar-->
+
+        <!-- Content Wrapper-->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Contenr -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav th:replace="fragments/navbar :: navbar-top" th:remove="tag"></nav>
+                <!-- End of Topbar -->
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- ISI DISINI IMPLEMENTASI KALIAN -->
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card" style="margin: 20px">
+                                <div class="card-header">
+                                    Ubah Pengajuan Surat
+                                </div>
+                                <div class="card-body">
+                                    <form th:action="@{'/surat/ubahStatus/'+ ${surat.id}}" method="POST">
+                                        <div class="row form-group">
+                                            <input type="hidden" th:field="${surat.id}">
+                                            <input type="hidden" th:field="${surat.keterangan}">
+                                            <input type="hidden" th:field="${surat.tanggalPengajuan}">
+                                            <input type="hidden" th:field="${surat.jenisSurat.id}">
+                                            <input type="hidden" th:field="${surat.user.uuid}">
+                                            <label class="col-sm-4"> Status Pengajuan : </label>
+                                            <select th:if="${role} == 'Kepala Sekolah'" th:field="${surat.status}" class="form-control" style="margin:5px ">
+                                                <option value="1">Ditolak</option>
+                                                <option value="2">Disetujui</option>
+                                            </select>
+                                            <select th:if="${role} == 'Admin TU'" th:field="${surat.status}" class="form-control">
+                                                <option value="3">Diproses</option>
+                                                <option value="4">Selesai</option>
+                                            </select>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label class="col-sm-4">Tanggal Disetujui : </label>
+                                            <input type="date" class="form-control" th:field="${surat.tanggalDisetujui}">
+                                        </div>
+                                        <div class="row form-group">
+                                            <button type="submit" class="btn btn-primary">Ubah</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End of Page Contain -->
+
+
             </div>
-            <div class="card-body">
-                <form th:action="@{'/surat/ubahStatus/'+ ${surat.id}}" method="POST">
-                    <div class="row form-group">
-                        <input type="hidden" th:field="${surat.id}">
-                        <input type="hidden" th:field="${surat.keterangan}">
-                        <input type="hidden" th:field="${surat.tanggalPengajuan}">
-                        <input type="hidden" th:field="${surat.jenisSurat.id}">
-                        <input type="hidden" th:field="${surat.user.uuid}">
-                        <label class="col-sm-4"> Status Pengajuan : </label>
-                        <select th:if="${role} == 'Kepala Sekolah'" th:field="${surat.status}">
-                            <option value="1">Ditolak</option>
-                            <option value="2">Disetujui</option>
-                        </select>
-                        <select th:if="${role} == 'Admin TU'" th:field="${surat.status}">
-                            <option value="3">Diproses</option>
-                            <option value="4">Selesai</option>
-                        </select>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-sm-4">Tanggal Disetujui : </label>
-                        <input type="date" th:field="${surat.tanggalDisetujui}">
-                    </div>
-                    <div class="row form-group">
-                        <button type="submit" class="btn btn-primary">Ubah</button>
-                    </div>
-                </form>
-            </div>
+            <!-- End of Main Content -->
+
+
+            <!-- Footer -->
+            <footer th:replace="fragments/footer :: footer-bottom"></footer>
+            <!-- End of Footer -->
+
         </div>
+        <!-- Emd of Content Wrapper -->
+
     </div>
 </div>
+<!-- END OF TEMPLATE -->
+
+
+
+
+<!-- scripts -->
+<object th:include="fragments/fragment :: vendor_js" th:remove="tag"></object>
+<!--./ scripts -->
 </body>
 </html>

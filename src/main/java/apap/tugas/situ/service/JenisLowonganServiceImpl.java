@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JenisLowonganServiceImpl implements JenisLowonganService {
@@ -17,7 +18,6 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
     @Override
     public void addJenisLowongan(JenisLowonganModel jenisLowongan) {
         jenisLowonganDB.save(jenisLowongan);
-
     }
 
     @Override
@@ -29,4 +29,11 @@ public class JenisLowonganServiceImpl implements JenisLowonganService {
     public JenisLowonganModel findByNama(String nama) {
         return jenisLowonganDB.findByNama(nama);
     }
+
+    @Override
+    public void deleteJenisLowongan(JenisLowonganModel jenisLowongan) {
+        jenisLowonganDB.delete(jenisLowongan);
+    }
+
+
 }

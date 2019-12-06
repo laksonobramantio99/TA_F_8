@@ -93,12 +93,6 @@ public class JenisSuratController {
     @RequestMapping(path = "/jenis-surat/hapus/{id}")
     public ModelAndView hapusJenisSurat(@PathVariable Integer id, ModelMap model, RedirectAttributes redirAttrs) {
         String namaJenisSuratTarget = jenisSuratService.getJenisSuratById(id).get().getNama();
-        List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
-
-        model.addAttribute("namaJenisSuratTarget", namaJenisSuratTarget);
-        model.addAttribute("listSemuaJenisSurat", listSemuaJenisSurat);
-        model.addAttribute("id", id);
-
 
         jenisSuratService.hapusJenisSurat(id); // HAPUS
 
@@ -112,12 +106,9 @@ public class JenisSuratController {
             return new ModelAndView("redirect:/jenis-surat", model);
         }
 
-//        ModelAndView mv = new ModelAndView("redirect:/jenis-surat/hapus");
-
-        // Redirect Attribut
         redirAttrs.addFlashAttribute("namaJenisSuratTarget", namaJenisSuratTarget);
         redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
-        return new ModelAndView("redirect:/jenis-surat", model);
+        return new ModelAndView("redirect:/jenis-surat/hapus", model);
     }
 }
 
