@@ -23,27 +23,32 @@
     </li>
 
 
-    <!-- LOWONGAN -->
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-            <i class="fas fa-fw fa-user-circle"></i>
-            <span>Lowongan</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Lowongan</h6>
-                <a class="collapse-item" th:href="@{/lowongan}"><i class="far fa-eye"></i> Lihat</a>
-                <a class="collapse-item" href="register.html" th:href="@{/lowongan/tambah}"><i class="fas fa-plus"></i> Tambah</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Jenis Lowongan</h6>
-                <a class="collapse-item" th:href="@{/jenisLowongan}"><i class="far fa-eye"></i> Lihat</a>
+    <div sec:authorize="hasAuthority('Admin TU')">
+        <!-- LOWONGAN -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-user-circle"></i>
+                <span>Lowongan</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Lowongan</h6>
+                    <a class="collapse-item" th:href="@{/lowongan}"><i class="far fa-eye"></i> Lihat</a>
+                    <a class="collapse-item" th:href="@{/lowongan/tambah}"><i class="fas fa-plus"></i> Tambah</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Jenis Lowongan</h6>
+                    <a class="collapse-item" th:href="@{/jenisLowongan}"><i class="far fa-eye"></i> Lihat</a>
+                    <a class="collapse-item" th:href="@{/jenisLowongan/tambah}"><i class="fas fa-plus"></i> Tambah</a>
+
+                </div>
             </div>
-        </div>
-    </li>
-    <!-- /Lowongan -->
+        </li>
+        <!-- /Lowongan -->
+    </div>
 
 
     <!-- SURAT -->
@@ -51,7 +56,8 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-envelope"></i>
             <span>Surat</span>
         </a>
@@ -60,9 +66,11 @@
                 <h6 class="collapse-header">Surat</h6>
                 <a class="collapse-item" th:href="@{/surat}"><i class="far fa-eye"></i> Lihat</a>
                 <a class="collapse-item" th:href="@{/surat/tambah}"><i class="fas fa-plus"></i> Tambah</a>
-                <h6 class="collapse-header">Jenis Surat</h6>
-                <a class="collapse-item" th:href="@{/jenisSurat}"><i class="far fa-eye"></i> Lihat</a>
-                <a class="collapse-item" th:href="@{/jenisSurat/tambah}"><i class="fas fa-plus"></i> Tambah</a>
+                <div sec:authorize="hasAuthority('Admin TU')">
+                    <h6 class="collapse-header">Jenis Surat</h6>
+                    <a class="collapse-item" th:href="@{/jenisSurat}"><i class="far fa-eye"></i> Lihat</a>
+                    <a class="collapse-item" th:href="@{/jenisSurat/tambah}"><i class="fas fa-plus"></i> Tambah</a>
+                </div>
             </div>
         </div>
     </li>
@@ -72,15 +80,16 @@
     <div sec:authorize="hasAuthority('Admin TU')">
         <hr class="sidebar-divider">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Tambah User</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tambah Akun</h6>
-                    <a class="collapse-item" th:href="@{/user/addUser}"><i class="fas fa-plus"></i> User </a>
-                    <a class="collapse-item" href="cards.html"><i class="fas fa-plus"></i> Admin TU</a>
+                    <a class="collapse-item" th:href="@{/user/tambah}"><i class="fas fa-plus"></i> Admin TU</a>
+                    <a class="collapse-item" th:href="@{/user/addUser}"><i class="fas fa-plus"></i> User <span class="text-gray-500">(Unofficial)</span></a>
                 </div>
             </div>
         </li>
@@ -109,6 +118,7 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
+
 
 
 </ul>
