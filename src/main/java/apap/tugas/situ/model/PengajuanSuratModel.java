@@ -118,5 +118,5 @@ public class PengajuanSuratModel implements Serializable {
     public void setJenisSurat(JenisSuratModel jenisSurat) {
         this.jenisSurat = jenisSurat;
     }
-    
+
 }

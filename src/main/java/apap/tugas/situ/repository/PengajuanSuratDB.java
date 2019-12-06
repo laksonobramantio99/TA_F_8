@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface PengajuanSuratDB extends JpaRepository<PengajuanSuratModel, Integer> {
     Optional<PengajuanSuratModel> findByNomorSurat(String nomor);
     List<PengajuanSuratModel> findAllByUser_Uuid(String uuid);
+    List<PengajuanSuratModel> findAllByStatus(Integer status);
 }

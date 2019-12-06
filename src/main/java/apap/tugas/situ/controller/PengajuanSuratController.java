@@ -38,15 +38,35 @@ public class PengajuanSuratController {
 
         model.addAttribute("surat",existingSurat);
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+        if (existingSurat.getStatus() == 0 ) {
+            System.out.println(
+                    existingSurat.getStatus()
+            );
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+            if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Kepala Sekolah")){
+                System.out.println(
+                        "test"
+                );
+                String[] listStatus = {"Ditolak", "Disetujui"};
+                model.addAttribute("listStatus", listStatus);
+            }else if((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Admin TU")) {
+                String[] listStatus = {"Tidak dapat mengubah Status"};
+                model.addAttribute("listStatus", listStatus);
+            }
+        }
 
-        String[] listKepalaSekolah = {"Ditolak", "Disetujui"};
-        model.addAttribute("listKepSek", listKepalaSekolah);
-
-        String[] listTU = {"Diproses", "Selesai"};
-        model.addAttribute("listTU", listTU);
-
+        if (existingSurat.getStatus() == 2) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+            if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Kepala Sekolah")) {
+                String[] listKepalaSekolah = {"Sudah diproses"};
+                model.addAttribute("listStatus", listKepalaSekolah);
+            } else if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Admin TU")) {
+                String[] listTU = {"Diproses", "Selesai"};
+                model.addAttribute("listStatus", listTU);
+            }
+        }
         return "form-ubah-pengajuan-surat";
     }
 
@@ -67,14 +87,24 @@ public class PengajuanSuratController {
 
     @RequestMapping(value = "/surat/ubahStatus/{id}", method = RequestMethod.POST)
     public String updateSuratSubmit(@PathVariable Integer id, @ModelAttribute PengajuanSuratModel surat,  Model model){
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(surat.getTanggalPengajuan());
+        if (surat.getStatus() == 2){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(surat.getTanggalPengajuan());
 
-        model.addAttribute("date", date);
+            model.addAttribute("date", date);
 
-        PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
-        model.addAttribute("surat", newData);
+            PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
+            model.addAttribute("surat", newData);
+        }else if (surat.getStatus() == 0){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(surat.getTanggalPengajuan());
+            model.addAttribute("date", date);
+            surat.setNomorSurat("0");
+            PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
+            model.addAttribute("surat", newData);
+        }
         return "change-surat-submit";
     }
 
