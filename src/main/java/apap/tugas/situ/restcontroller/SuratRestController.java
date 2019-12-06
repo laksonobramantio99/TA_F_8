@@ -30,8 +30,8 @@ public class SuratRestController {
     @Autowired
     private JenisSuratService jenisSuratService;
 
-    @PostMapping(value = "/surat/tambah/{username}")
-    private BaseResponse<PengajuanSuratModel> createSurat(@PathVariable(value = "username") String username, @RequestBody SuratDetail surat, BindingResult bindingResult){
+    @PostMapping(value = "/surat/tambah/")
+    private BaseResponse<PengajuanSuratModel> createSurat(@RequestBody SuratDetail surat, BindingResult bindingResult){
         BaseResponse<PengajuanSuratModel> response = new BaseResponse<PengajuanSuratModel>();
         if (bindingResult.hasFieldErrors()){
             throw new ResponseStatusException(
@@ -42,7 +42,7 @@ public class SuratRestController {
 
             mySurat.setJenisSurat(jenisSuratService.getJenisSuratById(surat.getIdJenis()).get());
             mySurat.setStatus(0);
-            mySurat.setUser(userService.findUserByUserName(username));
+            mySurat.setUser(userService.findUserByUserName("admin1"));
             mySurat.setKeterangan(surat.getKeterangan());
             mySurat.setNomorSurat("0");
             mySurat.setTanggalDisetujui(null);
