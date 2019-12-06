@@ -34,8 +34,7 @@
 
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>BERHASIL!</strong>
-                        <span th:text="'Surat dengan nama'"></span>
-                        <strong th:text="${namaJenisSurat}"></strong>
+                        <span th:text="'Surat'"></span>
                         <span th:text="' sudah tersimpan'"></span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times</span>
@@ -46,8 +45,7 @@
                 <div th:if="${statusPenambahan == 'Gagal'}" class="container-fluid">
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>GAGAL!</strong>
-                        <span th:text="'Surat dengan nama '"></span>
-                        <strong th:text="${namaJenisSurat}"></strong>
+                        <span th:text="'Surat '"></span>
                         <span th:text="' tidak dapat disimpan karena jenis tersebut sudah ada'">></span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
