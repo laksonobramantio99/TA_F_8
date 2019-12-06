@@ -67,8 +67,6 @@ public class JenisLowonganController {
     public ModelAndView hapusJenisLowongan(@PathVariable String nama, ModelMap model, RedirectAttributes redirAttrs) {
         jenisLowonganService.deleteJenisLowongan(jenisLowonganService.findByNama(nama)); // HAPUS
 
-//        ModelAndView mv = new ModelAndView("redirect:/jenis-surat/hapus");
-
         // Redirect Attribut
         redirAttrs.addFlashAttribute("namaJenisLowongan", nama);
         redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
