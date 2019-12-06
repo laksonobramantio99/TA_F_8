@@ -58,7 +58,6 @@ public class JenisSuratController {
         }
 
         jenisSuratService.tambahJenisSurat(jenisSuratBaru);
-        System.out.println(jenisSuratBaru.getNama()); //CHECK
         String statusPenambahan = "Berhasil";
         model.addAttribute("statusPenambahan", statusPenambahan);
 
@@ -96,19 +95,9 @@ public class JenisSuratController {
 
         jenisSuratService.hapusJenisSurat(id); // HAPUS
 
-        try {
-            List<JenisSuratModel> semuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
-            if (semuaJenisSurat.size() == 0) {
-                jenisSuratService.hapusJenisSurat(id);
-            }
-        } catch (NoSuchElementException e) {
-            model.addAttribute("errorMessage", "Id " + id.toString() + " tidak ditemukan");
-            return new ModelAndView("redirect:/jenis-surat", model);
-        }
-
         redirAttrs.addFlashAttribute("namaJenisSuratTarget", namaJenisSuratTarget);
         redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
-        return new ModelAndView("redirect:/jenis-surat/hapus", model);
+        return new ModelAndView("redirect:/jenisSurat", model);
     }
 }
 
