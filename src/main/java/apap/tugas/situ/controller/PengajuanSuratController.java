@@ -87,15 +87,16 @@ public class PengajuanSuratController {
 
     @RequestMapping(value = "/surat/ubahStatus/{id}", method = RequestMethod.POST)
     public String updateSuratSubmit(@PathVariable Integer id, @ModelAttribute PengajuanSuratModel surat,  Model model){
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(surat.getTanggalPengajuan());
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(surat.getTanggalPengajuan());
 
-        model.addAttribute("date", date);
+            model.addAttribute("date", date);
 
-        PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
-        model.addAttribute("surat", newData);
-        return "change-surat-submit";
+            PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
+            model.addAttribute("surat", newData);
+            return "change-surat-submit";
+
     }
 
     @RequestMapping(value = "/surat/tambah",  method = RequestMethod.GET)
