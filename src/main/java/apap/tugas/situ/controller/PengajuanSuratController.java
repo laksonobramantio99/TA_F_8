@@ -38,15 +38,35 @@ public class PengajuanSuratController {
 
         model.addAttribute("surat",existingSurat);
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+        if (existingSurat.getStatus() == 0 ) {
+            System.out.println(
+                    existingSurat.getStatus()
+            );
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+            if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Kepala Sekolah")){
+                System.out.println(
+                        "test"
+                );
+                String[] listStatus = {"Ditolak", "Disetujui"};
+                model.addAttribute("listStatus", listStatus);
+            }else if((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Admin TU")) {
+                String[] listStatus = {"Tidak dapat mengubah Status"};
+                model.addAttribute("listStatus", listStatus);
+            }
+        }
 
-        String[] listKepalaSekolah = {"Ditolak", "Disetujui"};
-        model.addAttribute("listKepSek", listKepalaSekolah);
-
-        String[] listTU = {"Diproses", "Selesai"};
-        model.addAttribute("listTU", listTU);
-
+        if (existingSurat.getStatus() == 2) {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            model.addAttribute("role", userService.findUserByUserName(auth.getName()).getRole().getNama());
+            if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Kepala Sekolah")) {
+                String[] listKepalaSekolah = {"Sudah diproses"};
+                model.addAttribute("listStatus", listKepalaSekolah);
+            } else if ((userService.findUserByUserName(auth.getName()).getRole().getNama()).equals("Admin TU")) {
+                String[] listTU = {"Diproses", "Selesai"};
+                model.addAttribute("listStatus", listTU);
+            }
+        }
         return "form-ubah-pengajuan-surat";
     }
 

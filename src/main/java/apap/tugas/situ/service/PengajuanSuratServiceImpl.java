@@ -80,6 +80,11 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
     public List<PengajuanSuratModel> getPengajuanSuratListUser(String uuid) {
         return pengajuanSuratDb.findAllByUser_Uuid(uuid);
     }
+
+    @Override
+    public List<PengajuanSuratModel> getPengajuanSuratListStatus(Integer status) {
+        return pengajuanSuratDb.findAllByStatus(status);
+    }
 }
 
 
