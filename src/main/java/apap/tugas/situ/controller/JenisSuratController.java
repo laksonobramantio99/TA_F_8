@@ -21,7 +21,7 @@ public class JenisSuratController {
     @Autowired
     JenisSuratService jenisSuratService;
 
-    @GetMapping(path= "/jenis-surat/tambah")
+    @GetMapping(path= "/jenisSurat/tambah")
     public String formTambahSurat(Model model) {
         JenisSuratModel calonJenisSurat = new JenisSuratModel();
         List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
@@ -32,7 +32,7 @@ public class JenisSuratController {
         return "form-tambah-surat.html";
     }
 
-    @PostMapping(path = "/jenis-surat/tambah")
+    @PostMapping(path = "/jenisSurat/tambah")
     public String aksiTambahSurat(@ModelAttribute JenisSuratModel jenisSuratBaru, Model model) {
         JenisSuratModel calonJenisSurat = new JenisSuratModel();
         List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
@@ -65,7 +65,7 @@ public class JenisSuratController {
         return "form-tambah-surat-status.html";
     }
 
-    @GetMapping(value = "/jenis-surat")
+    @GetMapping(value = "/jenisSurat")
     public String kunjunganPertamaTanpaDelete(Model model) {
         List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
         JenisSuratModel calonJenisSurat = new JenisSuratModel();
@@ -77,7 +77,7 @@ public class JenisSuratController {
         return "view-jenis-surat.html";
     }
 
-    @GetMapping(value = "/jenis-surat/hapus")
+    @GetMapping(value = "/jenisSurat/hapus")
     public String kunjunganSetelahMelakukanDelete(Model model) {
         List<JenisSuratModel> listSemuaJenisSurat = jenisSuratService.getSemuaJenisSurat();
         JenisSuratModel calonJenisSurat = new JenisSuratModel();
@@ -90,7 +90,7 @@ public class JenisSuratController {
         return "view-jenis-surat.html";
     }
 
-    @RequestMapping(path = "/jenis-surat/hapus/{id}")
+    @RequestMapping(path = "/jenisSurat/hapus/{id}")
     public ModelAndView hapusJenisSurat(@PathVariable Integer id, ModelMap model, RedirectAttributes redirAttrs) {
         String namaJenisSuratTarget = jenisSuratService.getJenisSuratById(id).get().getNama();
 
