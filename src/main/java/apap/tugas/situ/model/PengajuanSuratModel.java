@@ -45,11 +45,6 @@ public class PengajuanSuratModel implements Serializable {
     @Column(name = "status", nullable = false)
     private Integer status;
 
-    //Untuk sementara masih menggunakan penginputan manual, jika sudah ada fitur add akan ditambahkan logic untuk digenerate
-    @Column(name = "stringStatus", nullable = true)
-    @JsonIgnore
-    private String stringStatus;
-
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "uuidUser", referencedColumnName = "uuid", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -123,12 +118,5 @@ public class PengajuanSuratModel implements Serializable {
     public void setJenisSurat(JenisSuratModel jenisSurat) {
         this.jenisSurat = jenisSurat;
     }
-
-    public String getStringStatus() {
-        return stringStatus;
-    }
-
-    public void setStringStatus(String stringStatus) {
-        this.stringStatus = stringStatus;
-    }
+    
 }
