@@ -87,14 +87,24 @@ public class PengajuanSuratController {
 
     @RequestMapping(value = "/surat/ubahStatus/{id}", method = RequestMethod.POST)
     public String updateSuratSubmit(@PathVariable Integer id, @ModelAttribute PengajuanSuratModel surat,  Model model){
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        String date = simpleDateFormat.format(surat.getTanggalPengajuan());
+        if (surat.getStatus() == 2){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(surat.getTanggalPengajuan());
 
-        model.addAttribute("date", date);
+            model.addAttribute("date", date);
 
-        PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
-        model.addAttribute("surat", newData);
+            PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
+            model.addAttribute("surat", newData);
+        }else if (surat.getStatus() == 0){
+            String pattern = "yyyy-MM-dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String date = simpleDateFormat.format(surat.getTanggalPengajuan());
+            model.addAttribute("date", date);
+            surat.setNomorSurat("0");
+            PengajuanSuratModel newData = pengajuanSuratService.ubahSurat(surat);
+            model.addAttribute("surat", newData);
+        }
         return "change-surat-submit";
     }
 
