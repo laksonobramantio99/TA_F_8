@@ -65,11 +65,17 @@ public class JenisLowonganController {
 
     @RequestMapping(value = "/jenisLowongan/hapus/{nama}")
     public ModelAndView hapusJenisLowongan(@PathVariable String nama, ModelMap model, RedirectAttributes redirAttrs) {
-        jenisLowonganService.deleteJenisLowongan(jenisLowonganService.findByNama(nama)); // HAPUS
+        JenisLowonganModel jenisLowongan = jenisLowonganService.findByNama(nama);
+        if (jenisLowongan.getListLowongan().size() == 0) {
+            jenisLowonganService.deleteJenisLowongan(jenisLowongan);
+            redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
+        }else{
+            redirAttrs.addFlashAttribute( "statusHapus", "gagal dihapus");
+        }
+         // HAPUS
 
         // Redirect Attribut
         redirAttrs.addFlashAttribute("namaJenisLowongan", nama);
-        redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
         return new ModelAndView("redirect:/jenisLowongan", model);
     }
 
