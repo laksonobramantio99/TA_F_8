@@ -1,5 +1,7 @@
 # Kelompok F8 - SI TU
 
+### Live app: [https://situ-f8.herokuapp.com/](https://situ-f8.herokuapp.com/)
+
 ## Anggota Kelompok:
 - Oristania Wahyu Nabasya - 1706025390
 - Abiyu Muhammad Akmal - 1706984474

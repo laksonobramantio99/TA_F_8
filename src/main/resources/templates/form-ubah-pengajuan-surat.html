@@ -47,11 +47,11 @@
                                             <input type="hidden" th:field="${surat.jenisSurat.id}">
                                             <input type="hidden" th:field="${surat.user.uuid}">
                                             <label class="col-sm-4"> Status Pengajuan : </label>
-                                            <select th:if="${role} == 'Kepala Sekolah'" th:field="${surat.status}" class="form-control" style="margin:5px ">
+                                            <select th:if="${role == 'Kepala Sekolah'  && surat.status == 0} " th:field="${surat.status}" class="form-control" style="margin:5px ">
                                                 <option value="1">Ditolak</option>
                                                 <option value="2">Disetujui</option>
                                             </select>
-                                            <select th:if="${role} == 'Admin TU'" th:field="${surat.status}" class="form-control">
+                                            <select th:if="${role == 'Admin TU'  && surat.status == 2} " th:field="${surat.status}" class="form-control">
                                                 <option value="3">Diproses</option>
                                                 <option value="4">Selesai</option>
                                             </select>

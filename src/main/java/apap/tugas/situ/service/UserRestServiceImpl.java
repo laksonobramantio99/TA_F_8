@@ -13,7 +13,6 @@ import java.util.Map;
 @Service
 @Transactional
 public class UserRestServiceImpl implements UserRestService {
-    final public static String sisivitasUrl = "http://sivitas.herokuapp.com";
     private final WebClient webClient;
     private final WebClient webClient2;
 
@@ -22,7 +21,7 @@ public class UserRestServiceImpl implements UserRestService {
 
     public UserRestServiceImpl(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl(Setting.getSivitas).build();
-        this.webClient2 = webClientBuilder.baseUrl(sisivitasUrl).build();
+        this.webClient2 = webClientBuilder.baseUrl(Setting.sisivitasUrl).build();
     }
 
     @Override

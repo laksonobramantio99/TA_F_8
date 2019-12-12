@@ -51,14 +51,18 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
     public PengajuanSuratModel ubahSurat(PengajuanSuratModel surat) {
         PengajuanSuratModel mySurat = pengajuanSuratDb.findById(surat.getId()).get();
 
-        try{
-            mySurat.setTanggalDisetujui(surat.getTanggalDisetujui());
-            mySurat.setStatus(surat.getStatus());
-            generateCode(surat);
-            pengajuanSuratDb.save(mySurat);
-            return mySurat;
-        }catch (Exception e){
-            return null;
+            if (surat.getStatus() == 4){
+                mySurat.setTanggalDisetujui(surat.getTanggalDisetujui());
+                mySurat.setStatus(surat.getStatus());
+                generateCode(surat);
+                pengajuanSuratDb.save(mySurat);
+                return mySurat;
+            }else{
+                mySurat.setTanggalDisetujui(surat.getTanggalDisetujui());
+                mySurat.setStatus(surat.getStatus());
+                mySurat.setNomorSurat("0");
+                pengajuanSuratDb.save(mySurat);
+                return mySurat;
         }
     }
 
@@ -79,6 +83,11 @@ public class PengajuanSuratServiceImpl implements PengajuanSuratService {
     @Override
     public List<PengajuanSuratModel> getPengajuanSuratListUser(String uuid) {
         return pengajuanSuratDb.findAllByUser_Uuid(uuid);
+    }
+
+    @Override
+    public List<PengajuanSuratModel> getPengajuanSuratListStatus(Integer status) {
+        return pengajuanSuratDb.findAllByStatus(status);
     }
 }
 
