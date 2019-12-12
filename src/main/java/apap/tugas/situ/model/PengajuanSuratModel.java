@@ -26,7 +26,7 @@ public class PengajuanSuratModel implements Serializable {
     private String nomorSurat;
 
     @NotNull
-    @Column(name = "tanggalPengajuan", nullable = false)
+    @Column(name = "tanggalPengajuan", nullable = true)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonIgnore
     private Date tanggalPengajuan;

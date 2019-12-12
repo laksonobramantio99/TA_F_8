@@ -1,7 +1,9 @@
 package apap.tugas.situ.service;
 
 import apap.tugas.situ.model.JenisSuratModel;
+import apap.tugas.situ.model.PengajuanSuratModel;
 import apap.tugas.situ.repository.JenisSuratDB;
+import apap.tugas.situ.repository.PengajuanSuratDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class JenisSuratServiceImpl implements JenisSuratService {
 
     @Autowired
     private JenisSuratDB jenisSuratDB;
+
+    @Autowired
+    private PengajuanSuratDB pengajuanSuratDB;
 
     @Override
     public List<JenisSuratModel> getSemuaJenisSurat() {
@@ -39,12 +44,13 @@ public class JenisSuratServiceImpl implements JenisSuratService {
     public void hapusJenisSurat(Integer id) {
         jenisSuratDB.deleteById(id);
     }
-
     @Override
     public boolean checkAddSuccess(String namaJenisSuratAdded, String namaJenisSuratDiDB) {
         boolean isNotSame = !(namaJenisSuratAdded.equals(namaJenisSuratDiDB));
         return isNotSame;
     }
+
+
 
 
 }
