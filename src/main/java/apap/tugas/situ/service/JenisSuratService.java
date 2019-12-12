@@ -11,6 +11,5 @@ public interface JenisSuratService {
     Optional<JenisSuratModel> getJenisSuratByNama(String nama);
     void tambahJenisSurat(JenisSuratModel jenisSuratBaru);
     void hapusJenisSurat(Integer id);
-
     boolean checkAddSuccess(String namaJenisSuratAdded, String namaJenisSuratDiDB);
 }

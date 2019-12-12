@@ -1,6 +1,8 @@
 package apap.tugas.situ.controller;
 
 import apap.tugas.situ.model.JenisSuratModel;
+import apap.tugas.situ.model.PengajuanSuratModel;
+import apap.tugas.situ.repository.JenisSuratDB;
 import apap.tugas.situ.service.JenisSuratService;
 import apap.tugas.situ.service.JenisSuratServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class JenisSuratController {
 
     @Autowired
     JenisSuratService jenisSuratService;
+
+    @Autowired
+    JenisSuratDB jenisSuratDB;
 
     @GetMapping(path= "/jenisSurat/tambah")
     public String formTambahSurat(Model model) {
@@ -92,11 +97,16 @@ public class JenisSuratController {
     @RequestMapping(path = "/jenisSurat/hapus/{id}")
     public ModelAndView hapusJenisSurat(@PathVariable Integer id, ModelMap model, RedirectAttributes redirAttrs) {
         String namaJenisSuratTarget = jenisSuratService.getJenisSuratById(id).get().getNama();
-
-        jenisSuratService.hapusJenisSurat(id); // HAPUS
+        List<PengajuanSuratModel> listjenisSurat = jenisSuratDB.findById(id).get().getListPengajuanSurat();
+        if (listjenisSurat.size() == 0) {
+            jenisSuratService.hapusJenisSurat(id); // HAPUS
+            redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
+        } else {
+            redirAttrs.addFlashAttribute( "statusHapus", "gagal dihapus");
+        }
 
         redirAttrs.addFlashAttribute("namaJenisSuratTarget", namaJenisSuratTarget);
-        redirAttrs.addFlashAttribute( "statusHapus", "berhasil dihapus");
+
         return new ModelAndView("redirect:/jenisSurat", model);
     }
 }
